@@ -105,6 +105,39 @@ export const useMatchPredictor = (seasonYear: number) => {
   // ============================================================
   // GET USER PREDICTIONS
   // ============================================================
+  const savePrediction = async (matchId: number) => {
+    const prediction = predictions[matchId];
+
+    if (!prediction) {
+      return;
+    }
+
+    if (prediction.homeScore === null || prediction.awayScore === null) {
+      return;
+    }
+
+    setSavingPredictions(true);
+
+    try {
+      const saved = await MatchPredictionService.upsertPrediction({
+        matchId,
+        homeScore: prediction.homeScore,
+        awayScore: prediction.awayScore,
+        isBoosted: prediction.isBoosted,
+      });
+
+      setPredictions((previous) => ({
+        ...previous,
+        [matchId]: {
+          homeScore: saved.homeScore,
+          awayScore: saved.awayScore,
+          isBoosted: saved.isBoosted,
+        },
+      }));
+    } finally {
+      setSavingPredictions(false);
+    }
+  };
 
   const getUserPredictions = useCallback(
     async (targetUserId: number, gameweekId: number) => {
@@ -298,6 +331,8 @@ export const useMatchPredictor = (seasonYear: number) => {
     updatePrediction,
     updateBoost,
     savePredictions,
+
+    savePrediction,
 
     getUserPredictions,
 

@@ -30,6 +30,7 @@ const MatchCard = ({
       <div className={styles.matchRow}>
         <div className={`${styles.team} ${styles.home}`}>
           <img src={match.homeTeam.logoUrl} alt={match.homeTeam.name} />
+
           <span>{match.homeTeam.shortName}</span>
         </div>
 
@@ -45,6 +46,7 @@ const MatchCard = ({
 
         <div className={`${styles.team} ${styles.away}`}>
           <span>{match.awayTeam.shortName}</span>
+
           <img src={match.awayTeam.logoUrl} alt={match.awayTeam.name} />
         </div>
       </div>

@@ -1,4 +1,3 @@
-import React from "react";
 import Logo from "../../../components/ui/Logo";
 import styles from "./Footer.module.scss"; // 1. Uvezi kao objekat 'styles'
 

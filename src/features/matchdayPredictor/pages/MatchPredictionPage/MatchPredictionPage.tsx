@@ -14,10 +14,11 @@ const MatchPredictionPage = () => {
     selectedGameweek,
     selectedGameweekId,
     predictions,
-    savingMatchId,
+    savingPredictions,
     setSelectedGameweekId,
     updatePrediction,
-    savePrediction,
+    updateBoost,
+    savePredictions,
   } = useMatchPredictor(CURRENT_SEASON);
 
   if (loading) {
@@ -53,7 +54,9 @@ const MatchPredictionPage = () => {
 
       <div className={styles.matchesGrid}>
         {selectedGameweek.matches.map((match) => {
-          if (!match.matchId) return null;
+          if (!match.matchId) {
+            return null;
+          }
 
           const prediction = predictions[match.matchId];
 
@@ -64,7 +67,6 @@ const MatchPredictionPage = () => {
               homeScore={prediction?.homeScore ?? null}
               awayScore={prediction?.awayScore ?? null}
               isBoosted={prediction?.isBoosted ?? false}
-              saving={savingMatchId === match.matchId}
               onHomeScoreChange={(value) =>
                 updatePrediction(match.matchId!, {
                   homeScore: value,
@@ -75,15 +77,20 @@ const MatchPredictionPage = () => {
                   awayScore: value,
                 })
               }
-              onBoostChange={(value) =>
-                updatePrediction(match.matchId!, {
-                  isBoosted: value,
-                })
-              }
-              onSave={() => void savePrediction(match.matchId!)}
+              onBoostChange={(value) => updateBoost(match.matchId!, value)}
             />
           );
         })}
+      </div>
+
+      <div className={styles.actions}>
+        <button
+          type="button"
+          onClick={() => void savePredictions()}
+          disabled={savingPredictions}
+        >
+          {savingPredictions ? "Saving predictions..." : "Save predictions"}
+        </button>
       </div>
     </div>
   );
