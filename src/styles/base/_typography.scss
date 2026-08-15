@@ -1,0 +1,51 @@
+@use "../abstracts/variables" as *;
+
+// Uvoz fonta (npr. Inter sa Google Fonts)
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-main;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: $text-primary;
+  text-transform: uppercase; // Premier Predictor stil naslova
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+h2 {
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+}
+h3 {
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+}
+
+p {
+  color: $text-secondary;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+// Gradijenti za naslove sa slike
+.title-gradient-cyan {
+  background: linear-gradient(135deg, #ffffff 30%, $accent-neon-blue 100%);
+  @supports (-webkit-background-clip: text) {
+    -webkit-background-clip: text;
+  }
+  -webkit-text-fill-color: transparent;
+}
+
+.title-gradient-purple {
+  background: linear-gradient(135deg, #ffffff 20%, $accent-purple 100%);
+  @supports (-webkit-background-clip: text) {
+    -webkit-background-clip: text;
+  }
+  -webkit-text-fill-color: transparent;
+}

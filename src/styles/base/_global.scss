@@ -1,0 +1,54 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+body {
+  background-image:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(107, 70, 193, 0.25) 0%,
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 85% 80%,
+      rgba(0, 210, 255, 0.15) 0%,
+      transparent 40%
+    ),
+    url("../../assets/backgrounds/bg.webp");
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+
+  color: $text-primary;
+  font-family: $font-main;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+// Naslovi sa gradijentom (kao "PREMIERSHIP PREDICTOR")
+.text-gradient {
+  background: linear-gradient(
+    135deg,
+    $text-primary 30%,
+    $accent-neon-blue 100%
+  );
+  @supports (-webkit-background-clip: text) {
+    -webkit-background-clip: text;
+  }
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-purple {
+  background: linear-gradient(135deg, #a855f7 0%, $accent-pink 100%);
+  @supports (-webkit-background-clip: text) {
+    -webkit-background-clip: text;
+  }
+  -webkit-text-fill-color: transparent;
+}

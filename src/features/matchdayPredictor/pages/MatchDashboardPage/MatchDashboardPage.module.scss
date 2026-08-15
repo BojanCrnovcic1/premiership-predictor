@@ -1,0 +1,103 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+.container {
+  width: 100%;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 40px 20px;
+  @include flex-center;
+  min-height: calc(100vh - 120px);
+}
+
+.heroCard {
+  @include glass-card;
+  padding: 48px 36px;
+  max-width: 640px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  @include respond-to("mobile") {
+    padding: 32px 20px;
+  }
+}
+
+.title {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  background: linear-gradient(
+    135deg,
+    $text-primary 30%,
+    $accent-neon-blue 100%
+  );
+  @supports (-webkit-background-clip: text) {
+    -webkit-background-clip: text;
+  }
+  -webkit-text-fill-color: transparent;
+}
+
+.description {
+  color: $text-secondary;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 480px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 12px;
+  width: 100%;
+
+  @include respond-to("mobile") {
+    flex-direction: column;
+
+    a {
+      width: 100%;
+    }
+  }
+}
+
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  background: linear-gradient(90deg, $accent-purple, $accent-neon-blue);
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: $radius-sm;
+  transition: all $transition-fast;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.45);
+  }
+}
+
+.btnOutline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  background: transparent;
+  border: 1px solid $accent-neon-blue;
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: $radius-sm;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: rgba(0, 210, 255, 0.12);
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
+  }
+}

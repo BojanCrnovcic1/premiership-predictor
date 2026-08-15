@@ -1,0 +1,33 @@
+@use "../../../../../styles/abstracts/variables" as *;
+@use "../../../../../styles/abstracts/mixins" as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 24px 20px 60px;
+
+  @include respond-to("tablet") {
+    gap: 32px;
+    padding: 20px 16px 40px;
+  }
+
+  @include respond-to("mobile") {
+    gap: 24px;
+    padding: 16px 12px 30px;
+  }
+}
+
+.loading {
+  @include flex-center;
+  min-height: 400px;
+  color: $accent-neon-blue;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+}

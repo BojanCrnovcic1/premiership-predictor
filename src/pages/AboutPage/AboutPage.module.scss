@@ -1,0 +1,350 @@
+@use "../../styles/abstracts/variables" as *;
+@use "../../styles/abstracts/mixins" as *;
+
+// ==========================================
+// 1. PAGE CONTAINER & ANIMATIONS
+// ==========================================
+.page {
+  width: 100%;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+// ==========================================
+// 2. HERO SECTION
+// ==========================================
+.hero {
+  @include glass-card;
+  padding: 48px 36px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+
+  // Radial glow u pozadini
+  &::before {
+    content: "";
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(
+      circle,
+      rgba($accent-neon-blue, 0.15) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+
+  .eyebrow {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: $accent-neon-blue;
+    text-transform: uppercase;
+    text-shadow: 0 0 12px rgba($accent-neon-blue, 0.4);
+  }
+
+  h1 {
+    margin: 0;
+    color: $text-primary;
+    line-height: 1.2;
+
+    span {
+      background: linear-gradient(
+        135deg,
+        $text-primary 30%,
+        $accent-neon-blue 100%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  .intro {
+    max-width: 680px;
+    margin: 0;
+    font-size: 1.1rem;
+    color: $text-secondary;
+    line-height: 1.6;
+  }
+}
+
+// ==========================================
+// 3. CONTENT SECTIONS (Text + Image Grid)
+// ==========================================
+.content,
+.contentReverse {
+  @include glass-card;
+  padding: 36px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: center;
+  gap: 40px;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(
+      circle,
+      rgba($accent-purple, 0.18) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+}
+
+// Za sekcije sa zamijenjenim redoslijedom ili samo tekstom
+.contentReverse {
+  grid-template-columns: 1fr;
+  max-width: 100%;
+}
+
+.textBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: $accent-purple;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0;
+    color: $text-primary;
+    line-height: 1.25;
+
+    br {
+      display: inline;
+    }
+  }
+
+  p {
+    margin: 0;
+    color: $text-secondary;
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+  border-radius: $radius-md;
+  overflow: hidden;
+  border: 1px solid $border-color;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition:
+      transform 0.5s ease,
+      filter 0.5s ease;
+    filter: brightness(0.9) contrast(1.05);
+  }
+
+  &:hover img {
+    transform: scale(1.04);
+    filter: brightness(1) contrast(1.1);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: $radius-md;
+    border: 1px solid rgba($accent-neon-blue, 0.2);
+    pointer-events: none;
+    transition: border-color $transition-fast;
+  }
+
+  &:hover::after {
+    border-color: rgba($accent-neon-blue, 0.5);
+  }
+}
+
+// ==========================================
+// 4. SUPPORT SECTION
+// ==========================================
+.support {
+  @include glass-card;
+  padding: 40px 36px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  background: rgba($accent-purple, 0.08);
+  border: 1px solid rgba($accent-purple, 0.3);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(
+      circle,
+      rgba($accent-neon-blue, 0.15) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+
+  .label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    color: $accent-neon-blue;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba($accent-neon-blue, 0.4);
+  }
+
+  h2 {
+    margin: 0;
+    color: $text-primary;
+  }
+
+  p {
+    max-width: 620px;
+    margin: 0;
+    color: $text-secondary;
+    font-size: 0.98rem;
+    line-height: 1.6;
+  }
+
+  .thanks {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: $accent-neon-blue;
+    letter-spacing: 0.3px;
+  }
+}
+
+// ==========================================
+// 5. ANIMATIONS
+// ==========================================
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ==========================================
+// 6. RESPONSIVE BREAKPOINTS
+// ==========================================
+@include respond-to("tablet") {
+  .page {
+    padding: 30px 16px 60px;
+    gap: 28px;
+  }
+
+  .hero {
+    padding: 36px 24px;
+  }
+
+  .content,
+  .contentReverse {
+    grid-template-columns: 1fr;
+    padding: 28px;
+    gap: 28px;
+  }
+
+  .imageWrapper {
+    min-height: 220px;
+    max-height: 320px;
+  }
+
+  .support {
+    padding: 32px 24px;
+  }
+}
+
+@include respond-to("mobile") {
+  .page {
+    padding: 20px 12px 40px;
+    gap: 20px;
+  }
+
+  .hero {
+    padding: 28px 16px;
+    gap: 12px;
+
+    .intro {
+      font-size: 0.95rem;
+    }
+  }
+
+  .content,
+  .contentReverse {
+    padding: 20px 16px;
+    gap: 20px;
+  }
+
+  .textBlock {
+    gap: 12px;
+
+    h2 {
+      font-size: 1.25rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+    }
+  }
+
+  .imageWrapper {
+    min-height: 180px;
+  }
+
+  .support {
+    padding: 24px 16px;
+    gap: 10px;
+
+    p {
+      font-size: 0.9rem;
+    }
+
+    .thanks {
+      font-size: 0.85rem;
+    }
+  }
+}

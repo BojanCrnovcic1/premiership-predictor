@@ -1,0 +1,106 @@
+@use "../../../../../styles/abstracts/variables" as *;
+@use "../../../../../styles/abstracts/mixins" as *;
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 18px;
+  background: $bg-secondary;
+  border: 1px solid $border-color;
+  border-radius: $radius-md;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: none;
+  cursor: grab;
+  transition:
+    border-color $transition-fast,
+    box-shadow $transition-fast,
+    background-color $transition-fast;
+
+  &:hover {
+    border-color: $border-neon;
+    background: rgba($bg-secondary, 0.95);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+
+    .drag {
+      color: $accent-neon-blue;
+    }
+  }
+
+  &:active {
+    cursor: grabbing;
+    border-color: $accent-neon-blue;
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.35);
+    z-index: 10;
+  }
+}
+
+.position {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  color: $text-primary;
+  font-weight: 800;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: $text-primary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.shortName {
+  font-size: 0.75rem;
+  color: $text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.drag {
+  color: $text-muted;
+  flex-shrink: 0;
+  transition: color $transition-fast;
+}
+
+@include respond-to("mobile") {
+  .card {
+    padding: 10px 14px;
+    gap: 12px;
+  }
+
+  .logo {
+    width: 30px;
+    height: 30px;
+  }
+
+  .position {
+    width: 28px;
+    height: 28px;
+    font-size: 0.85rem;
+  }
+}

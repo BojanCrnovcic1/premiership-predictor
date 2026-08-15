@@ -1,0 +1,326 @@
+@use "../../styles/abstracts/variables" as *;
+@use "../../styles/abstracts/mixins" as *;
+
+// ==========================================
+// 1. PAGE CONTAINER & ANIMATIONS
+// ==========================================
+.page {
+  width: 100%;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+// ==========================================
+// 2. HEADER
+// ==========================================
+.header {
+  @include glass-card;
+  padding: 32px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+
+  // Radial glow accent
+  &::before {
+    content: "";
+    position: absolute;
+    top: -40px;
+    left: -40px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(
+      circle,
+      rgba($accent-neon-blue, 0.15) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+
+  .eyebrow {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    color: $accent-neon-blue;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba($accent-neon-blue, 0.4);
+  }
+
+  h1 {
+    margin: 4px 0 6px;
+    color: $text-primary;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.98rem;
+    color: $text-secondary;
+  }
+}
+
+// ==========================================
+// 3. STANDINGS TABLE
+// ==========================================
+.tableWrapper {
+  @include glass-card;
+  padding: 24px;
+  width: 100%;
+  overflow-x: auto;
+
+  // Custom scrollbar
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba($accent-neon-blue, 0.3);
+    border-radius: 3px;
+  }
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  white-space: nowrap;
+
+  thead {
+    background: rgba($accent-purple, 0.15);
+
+    tr th {
+      padding: 16px 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: $text-primary;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      border-bottom: 1px solid $border-color;
+
+      // Pozicija kolona (#)
+      &:first-child {
+        width: 60px;
+        text-align: center;
+      }
+    }
+  }
+
+  tbody {
+    .row {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      transition: background $transition-fast;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:hover {
+        background: rgba($accent-neon-blue, 0.06);
+      }
+
+      td {
+        padding: 14px 20px;
+        font-size: 0.95rem;
+        color: $text-secondary;
+      }
+    }
+  }
+}
+
+// Column 1: Position
+.position {
+  text-align: center;
+  font-weight: 800;
+  color: $text-primary;
+  position: relative;
+
+  // Champions League spot (Top 4)
+  .row:nth-child(-n + 4) & {
+    color: $accent-neon-blue;
+    text-shadow: 0 0 8px rgba($accent-neon-blue, 0.4);
+  }
+
+  // Relegation zone (Bottom 3)
+  .row:nth-last-child(-n + 3) & {
+    color: #ff5555;
+  }
+}
+
+// Column 2: Team with Logo & Details
+.team {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  .logo {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+    flex-shrink: 0;
+  }
+
+  .teamInfo {
+    display: flex;
+    flex-direction: column;
+
+    strong {
+      color: $text-primary;
+      font-size: 0.98rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    span {
+      font-size: 0.78rem;
+      color: $text-secondary;
+      opacity: 0.7;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 2px;
+    }
+  }
+}
+
+// ==========================================
+// 4. LOADING & ERROR STATES
+// ==========================================
+.loading,
+.error {
+  @include glass-card;
+  max-width: 500px;
+  margin: 80px auto;
+  padding: 40px 28px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  p {
+    margin: 0;
+    font-size: 1.05rem;
+    color: $text-secondary;
+  }
+}
+
+.error {
+  border-color: rgba(255, 85, 85, 0.4);
+  background: rgba(255, 85, 85, 0.08);
+
+  p {
+    color: #ff6b6b;
+  }
+
+  button {
+    padding: 10px 24px;
+    background: transparent;
+    border: 1px solid rgba(255, 85, 85, 0.5);
+    border-radius: $radius-sm;
+    color: $text-primary;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all $transition-fast;
+
+    &:hover {
+      background: #ff5555;
+      border-color: #ff5555;
+      box-shadow: 0 0 12px rgba(255, 85, 85, 0.4);
+    }
+  }
+}
+
+// ==========================================
+// 5. ANIMATIONS
+// ==========================================
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ==========================================
+// 6. RESPONSIVE BREAKPOINTS
+// ==========================================
+@include respond-to("tablet") {
+  .page {
+    padding: 30px 16px 60px;
+    gap: 24px;
+  }
+
+  .header {
+    padding: 28px;
+  }
+
+  .tableWrapper {
+    padding: 16px;
+  }
+
+  .table {
+    thead tr th,
+    tbody .row td {
+      padding: 12px 14px;
+    }
+  }
+}
+
+@include respond-to("mobile") {
+  .page {
+    padding: 20px 12px 40px;
+    gap: 16px;
+  }
+
+  .header {
+    padding: 20px 16px;
+
+    h1 {
+      font-size: 1.4rem;
+    }
+
+    p {
+      font-size: 0.88rem;
+    }
+  }
+
+  .tableWrapper {
+    padding: 10px;
+    border-radius: $radius-sm;
+  }
+
+  .table {
+    thead tr th {
+      padding: 10px;
+      font-size: 0.75rem;
+    }
+
+    tbody .row td {
+      padding: 10px;
+      font-size: 0.85rem;
+    }
+  }
+
+  .team {
+    gap: 10px;
+
+    .logo {
+      width: 26px;
+      height: 26px;
+    }
+
+    .teamInfo strong {
+      font-size: 0.88rem;
+    }
+  }
+}

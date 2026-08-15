@@ -1,0 +1,46 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  gap: 20px;
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: $text-primary;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid $border-color;
+  }
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  span {
+    font-size: 0.9rem;
+    color: $text-secondary;
+    font-weight: 500;
+  }
+
+  strong {
+    font-size: 0.95rem;
+    color: $accent-neon-blue;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+  }
+}

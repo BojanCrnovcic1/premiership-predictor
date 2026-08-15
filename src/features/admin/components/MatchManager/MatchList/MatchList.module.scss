@@ -1,0 +1,352 @@
+@use "../../../../../styles/abstracts/variables" as *;
+@use "../../../../../styles/abstracts/mixins" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  gap: 16px;
+
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+
+  @include respond-to("mobile") {
+    gap: 12px;
+  }
+}
+
+.empty {
+  width: 100%;
+  box-sizing: border-box;
+
+  color: $text-secondary;
+
+  text-align: center;
+
+  padding: 32px 20px;
+
+  background: $bg-card;
+
+  border-radius: $radius-md;
+  border: 1px dashed $border-color;
+
+  font-size: 0.95rem;
+
+  @include respond-to("mobile") {
+    padding: 24px 14px;
+    font-size: 0.85rem;
+  }
+}
+
+.card {
+  @include glass-card;
+
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  box-sizing: border-box;
+
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 16px;
+
+  overflow: hidden;
+
+  transition:
+    border-color $transition-fast,
+    box-shadow $transition-fast;
+
+  &:hover {
+    border-color: rgba(0, 210, 255, 0.6);
+  }
+
+  @include respond-to("mobile") {
+    padding: 14px 12px;
+    gap: 12px;
+  }
+}
+
+.metaHeader {
+  @include flex-between;
+
+  width: 100%;
+  min-width: 0;
+
+  border-bottom: 1px solid $border-color;
+
+  padding-bottom: 12px;
+
+  font-size: 0.85rem;
+  color: $text-secondary;
+
+  gap: 8px;
+
+  @include respond-to("mobile") {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    font-size: 0.75rem;
+
+    padding-bottom: 10px;
+  }
+}
+
+.kickoff {
+  font-weight: 500;
+
+  white-space: nowrap;
+
+  max-width: 100%;
+}
+
+.statusBadge {
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  padding: 4px 10px;
+
+  border-radius: $radius-sm;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.5px;
+
+  white-space: nowrap;
+
+  &.finished {
+    background: rgba(100, 116, 139, 0.2);
+
+    color: $text-muted;
+
+    border: 1px solid rgba(100, 116, 139, 0.3);
+  }
+
+  &.live {
+    background: rgba(217, 70, 239, 0.15);
+
+    color: $accent-pink;
+
+    border: 1px solid rgba(217, 70, 239, 0.3);
+  }
+
+  &.scheduled {
+    background: rgba(0, 210, 255, 0.15);
+
+    color: $accent-neon-blue;
+
+    border: 1px solid rgba(0, 210, 255, 0.3);
+  }
+
+  @include respond-to("mobile") {
+    font-size: 0.65rem;
+    padding: 3px 7px;
+  }
+}
+
+.teamsSection {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto
+    minmax(0, 1fr);
+
+  align-items: center;
+
+  gap: 16px;
+
+  width: 100%;
+  min-width: 0;
+
+  padding: 8px 0;
+
+  @include respond-to("tablet") {
+    gap: 12px;
+  }
+
+  @include respond-to("mobile") {
+    gap: 5px;
+    padding: 4px 0;
+  }
+}
+
+.team {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  min-width: 0;
+  max-width: 100%;
+
+  .teamName {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  &.home {
+    justify-content: flex-end;
+    text-align: right;
+  }
+
+  &.away {
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  @include respond-to("mobile") {
+    gap: 5px;
+  }
+}
+
+.logo {
+  width: 36px;
+  height: 36px;
+
+  object-fit: contain;
+
+  flex: 0 0 auto;
+
+  @include respond-to("mobile") {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+.teamName {
+  min-width: 0;
+  max-width: 100%;
+
+  color: $text-primary;
+
+  font-size: 0.95rem;
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  @include respond-to("tablet") {
+    font-size: 0.85rem;
+  }
+
+  @include respond-to("mobile") {
+    font-size: 0.68rem;
+
+    white-space: normal;
+
+    display: -webkit-box;
+
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+
+    line-height: 1.15;
+  }
+}
+
+.vsBadge {
+  flex-shrink: 0;
+
+  font-weight: 800;
+
+  font-size: 0.8rem;
+
+  color: $text-muted;
+
+  padding: 4px 10px;
+
+  background: rgba(255, 255, 255, 0.05);
+
+  border-radius: $radius-sm;
+
+  border: 1px solid $border-color;
+
+  @include respond-to("mobile") {
+    padding: 3px 5px;
+    font-size: 0.6rem;
+  }
+}
+
+.scoreForm {
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: center;
+
+  gap: 16px;
+
+  width: 100%;
+  min-width: 0;
+
+  box-sizing: border-box;
+
+  background: rgba(18, 24, 41, 0.5);
+
+  padding: 16px;
+
+  border-radius: $radius-sm;
+
+  border: 1px solid $border-color;
+
+  @include respond-to("tablet") {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 12px;
+  }
+
+  @include respond-to("mobile") {
+    padding: 10px;
+
+    gap: 10px;
+  }
+
+  button {
+    flex-shrink: 0;
+
+    @include respond-to("tablet") {
+      width: 100%;
+    }
+  }
+}
+
+.scoreInputs {
+  display: flex;
+
+  align-items: flex-end;
+
+  gap: 12px;
+
+  min-width: 0;
+
+  @include respond-to("tablet") {
+    width: 100%;
+  }
+
+  @include respond-to("mobile") {
+    gap: 8px;
+  }
+
+  > div {
+    flex: 1 1 0;
+
+    min-width: 0;
+    max-width: 100%;
+  }
+}

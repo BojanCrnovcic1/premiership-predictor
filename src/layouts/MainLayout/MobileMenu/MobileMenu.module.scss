@@ -1,0 +1,175 @@
+@use "../../../styles/abstracts/variables" as *;
+@use "../../../styles/abstracts/mixins" as *;
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+
+  line-height: 0.95;
+
+  font-weight: 900;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  font-family: $font-main;
+}
+
+.brandWhite {
+  color: $text-primary;
+}
+
+.brandAccent {
+  color: #8b5cf6;
+}
+
+/* ================================
+   Menu Body
+================================ */
+
+.menuBody {
+  display: flex;
+  flex-direction: column;
+
+  gap: 32px;
+
+  padding-top: 16px;
+}
+
+/* ================================
+   Navigation
+================================ */
+
+.nav {
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.link {
+  position: relative;
+
+  color: $text-primary;
+
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+
+  text-decoration: none;
+
+  transition:
+    color $transition-fast,
+    text-shadow $transition-fast,
+    transform $transition-fast;
+
+  &:hover {
+    color: $accent-neon-blue;
+
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.6);
+
+    transform: translateX(4px);
+  }
+
+  &:focus-visible {
+    outline: none;
+
+    color: $accent-neon-blue;
+
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.6);
+  }
+}
+
+/* ================================
+   Auth Actions
+================================ */
+
+.actions {
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+
+  margin-top: 10px;
+}
+
+/* ================================
+   Logged-in Team
+================================ */
+
+.teamName {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 44px;
+
+  padding: 0 16px;
+
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  border-radius: 6px;
+
+  background: rgba(139, 92, 246, 0.08);
+
+  color: $text-primary;
+
+  font-family: $font-main;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  overflow: hidden;
+
+  transition:
+    color $transition-fast,
+    border-color $transition-fast,
+    background $transition-fast,
+    box-shadow $transition-fast,
+    transform $transition-fast;
+
+  &:hover {
+    color: #ffffff;
+
+    border-color: rgba(139, 92, 246, 0.8);
+
+    background: rgba(139, 92, 246, 0.16);
+
+    box-shadow:
+      0 0 14px rgba(139, 92, 246, 0.25),
+      inset 0 0 12px rgba(139, 92, 246, 0.05);
+
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus-visible {
+    outline: none;
+
+    border-color: $accent-neon-blue;
+
+    box-shadow:
+      0 0 0 2px rgba(0, 210, 255, 0.2),
+      0 0 14px rgba(0, 210, 255, 0.3);
+  }
+}
+
+.teamNameLabel {
+  display: block;
+
+  max-width: 100%;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

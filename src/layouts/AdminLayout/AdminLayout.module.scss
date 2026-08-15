@@ -1,0 +1,29 @@
+@use "../../styles/abstracts/variables" as *;
+
+.layout {
+  display: flex;
+
+  min-height: 100vh;
+
+  background: $bg-primary;
+}
+
+.content {
+  flex: 1;
+
+  padding: 2rem;
+
+  overflow-y: auto;
+}
+
+.menuButton {
+  display: none;
+}
+
+@media (max-width: $desktop) {
+  .menuButton {
+    display: flex;
+
+    margin-bottom: 2rem;
+  }
+}

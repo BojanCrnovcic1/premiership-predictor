@@ -1,0 +1,341 @@
+@use "../../styles/abstracts/variables" as *;
+@use "../../styles/abstracts/mixins" as *;
+
+// ==========================================
+// 1. PAGE CONTAINER & ANIMATIONS
+// ==========================================
+.page {
+  width: 100%;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+// ==========================================
+// 2. HEADER
+// ==========================================
+.header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+
+  span {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: $accent-neon-blue;
+    text-transform: uppercase;
+    text-shadow: 0 0 12px rgba($accent-neon-blue, 0.4);
+  }
+
+  h1 {
+    margin: 0;
+    background: linear-gradient(
+      135deg,
+      $text-primary 30%,
+      $accent-neon-blue 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  p {
+    font-size: 1.05rem;
+    color: $text-secondary;
+    line-height: 1.6;
+    margin: 0;
+  }
+}
+
+// ==========================================
+// 3. MAIN SECTIONS (Glass Cards)
+// ==========================================
+.section {
+  @include glass-card;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  position: relative;
+  overflow: hidden;
+
+  // Blagi glow efekat u gornjem desnom uglu svake sekcije
+  &::before {
+    content: "";
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(
+      circle,
+      rgba($accent-purple, 0.2) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid $border-color;
+
+  span {
+    font-size: 2.25rem;
+    font-weight: 900;
+    font-family: $font-main;
+    color: transparent;
+    -webkit-text-stroke: 1px $accent-neon-blue;
+    line-height: 1;
+    opacity: 0.85;
+  }
+
+  h2 {
+    margin: 0 0 4px 0;
+    color: $text-primary;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: $text-secondary;
+  }
+}
+
+// ==========================================
+// 4. RULES BLOCKS & TYPOGRAPHY
+// ==========================================
+.rulesBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  h3 {
+    color: $accent-neon-blue;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    margin: 0;
+
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 4px;
+      height: 15px;
+      background: $accent-purple;
+      margin-right: 10px;
+      border-radius: 2px;
+      box-shadow: 0 0 8px $accent-purple;
+    }
+  }
+
+  p {
+    margin: 0;
+    color: $text-secondary;
+    font-size: 0.95rem;
+    line-height: 1.6;
+
+    strong {
+      color: $text-primary;
+      font-weight: 700;
+    }
+  }
+
+  // Liste sa indikatorima
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 4px;
+    margin: 0;
+
+    li {
+      position: relative;
+      padding-left: 22px;
+      color: $text-secondary;
+      font-size: 0.95rem;
+      line-height: 1.5;
+
+      &::before {
+        content: "▹";
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: $accent-neon-blue;
+        font-weight: bold;
+      }
+
+      strong {
+        color: $text-primary;
+      }
+    }
+  }
+}
+
+// ==========================================
+// 5. RESPONSIVE TABLES
+// ==========================================
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: $radius-sm;
+  border: 1px solid $border-color;
+  background: rgba($bg-secondary, 0.6);
+  margin-top: 4px;
+
+  // Custom Scrollbar
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba($accent-neon-blue, 0.3);
+    border-radius: 3px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    white-space: nowrap;
+
+    thead {
+      background: rgba($accent-purple, 0.2);
+
+      th {
+        padding: 12px 16px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: $text-primary;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border-bottom: 1px solid $border-color;
+      }
+    }
+
+    tbody {
+      tr {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        transition: background $transition-fast;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        &:hover {
+          background: rgba($accent-neon-blue, 0.06);
+        }
+
+        td {
+          padding: 12px 16px;
+          font-size: 0.9rem;
+          color: $text-secondary;
+
+          &:first-child {
+            color: $text-primary;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+}
+
+// ==========================================
+// 6. ANIMATIONS
+// ==========================================
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ==========================================
+// 7. RESPONSIVE BREAKPOINTS
+// ==========================================
+@include respond-to("tablet") {
+  .page {
+    padding: 30px 16px 60px;
+    gap: 28px;
+  }
+
+  .section {
+    padding: 28px;
+    gap: 22px;
+  }
+
+  .sectionHeader {
+    gap: 16px;
+
+    span {
+      font-size: 1.85rem;
+    }
+  }
+}
+
+@include respond-to("mobile") {
+  .page {
+    padding: 20px 12px 40px;
+    gap: 20px;
+  }
+
+  .header {
+    p {
+      font-size: 0.9rem;
+    }
+  }
+
+  .section {
+    padding: 20px 16px;
+    gap: 18px;
+  }
+
+  .sectionHeader {
+    padding-bottom: 14px;
+
+    span {
+      font-size: 1.5rem;
+    }
+  }
+
+  .rulesBlock {
+    gap: 10px;
+
+    h3 {
+      font-size: 1rem;
+    }
+
+    ul li {
+      font-size: 0.88rem;
+    }
+  }
+
+  .tableWrapper {
+    table {
+      thead th,
+      tbody td {
+        padding: 10px 12px;
+        font-size: 0.82rem;
+      }
+    }
+  }
+}

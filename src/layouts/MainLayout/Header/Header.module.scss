@@ -1,0 +1,214 @@
+@use "../../../styles/abstracts/variables" as *;
+@use "../../../styles/abstracts/mixins" as *;
+
+.header {
+  width: 100%;
+  padding: 14px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  // Stakleni efekat sa tamnom polu-transparentnom pozadinom
+  background: rgba(11, 14, 27, 0.85);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+
+  border-bottom: 1px solid rgba(0, 210, 255, 0.15);
+
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+.container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 24px;
+
+  @include flex-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+  line-height: 0.95;
+
+  font-weight: 900;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  font-family: $font-main;
+}
+
+.brandWhite {
+  color: $text-primary;
+}
+
+.brandAccent {
+  color: #8b5cf6;
+}
+
+/* ================================
+   Navigation
+================================ */
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+
+  @include respond-to("tablet") {
+    display: none;
+  }
+}
+
+.link {
+  position: relative;
+
+  color: $text-primary;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.8px;
+
+  text-decoration: none;
+
+  transition:
+    color $transition-fast,
+    text-shadow $transition-fast;
+
+  &:hover {
+    color: $accent-neon-blue;
+
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.6);
+  }
+}
+
+/* ================================
+   Auth Actions
+================================ */
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  @include respond-to("tablet") {
+    display: none;
+  }
+}
+
+/* ================================
+   Logged-in Team Name
+================================ */
+
+.teamName {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 36px;
+  max-width: 180px;
+
+  padding: 0 14px;
+
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  border-radius: 6px;
+
+  background: rgba(139, 92, 246, 0.08);
+
+  color: $text-primary;
+
+  font-family: $font-main;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+
+  text-decoration: none;
+
+  overflow: hidden;
+
+  transition:
+    color $transition-fast,
+    border-color $transition-fast,
+    background $transition-fast,
+    box-shadow $transition-fast,
+    transform $transition-fast;
+
+  &:hover {
+    color: #ffffff;
+
+    border-color: rgba(139, 92, 246, 0.8);
+
+    background: rgba(139, 92, 246, 0.16);
+
+    box-shadow:
+      0 0 10px rgba(139, 92, 246, 0.25),
+      inset 0 0 10px rgba(139, 92, 246, 0.05);
+
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    outline: none;
+
+    border-color: $accent-neon-blue;
+
+    box-shadow:
+      0 0 0 2px rgba(0, 210, 255, 0.2),
+      0 0 12px rgba(0, 210, 255, 0.3);
+  }
+}
+
+.teamNameLabel {
+  display: block;
+
+  max-width: 150px;
+
+  color: $accent-neon-blue;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ================================
+   Hamburger
+================================ */
+
+.hamburger {
+  display: none;
+
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 26px;
+  height: 19px;
+
+  padding: 0;
+
+  background: transparent;
+  border: none;
+
+  cursor: pointer;
+
+  @include respond-to("tablet") {
+    display: flex;
+  }
+}
+
+.hamburgerLine {
+  width: 100%;
+  height: 3px;
+
+  background-color: $text-primary;
+
+  border-radius: 2px;
+
+  transition: all $transition-fast;
+}

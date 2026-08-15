@@ -1,0 +1,285 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+// ============================================================
+// STRANICA & GLAVNI LAYOUT
+// ============================================================
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  padding-bottom: 4rem;
+
+  @include respond-to("mobile") {
+    gap: 1.75rem;
+    padding-bottom: 2.5rem;
+  }
+}
+
+// Loading stanje
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 250px;
+  color: $text-secondary;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+// Empty stanje
+.empty {
+  @include glass-card;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  color: $text-muted;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+// ============================================================
+// HEADER STRANICE
+// ============================================================
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  @include respond-to("mobile") {
+    text-align: center;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: clamp(1.8rem, 4.5vw, 3rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin: 0;
+    background: linear-gradient(
+      135deg,
+      $text-primary 30%,
+      $accent-neon-blue 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  p {
+    margin: 0;
+    color: $text-secondary;
+    font-size: 1rem;
+    max-width: 600px;
+    line-height: 1.5;
+
+    @include respond-to("mobile") {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: $accent-neon-blue;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+// ============================================================
+// SUMMARY CARDS GRID
+// ============================================================
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+
+  @include respond-to("mobile") {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+// ============================================================
+// RANKING SEKCIJE (SEASON & GAMEWEEK)
+// ============================================================
+
+.rankingSection {
+  @include glass-card;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  @include respond-to("mobile") {
+    padding: 1.15rem;
+    gap: 1.25rem;
+  }
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid $border-color;
+  padding-bottom: 1rem;
+
+  h2 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: $text-primary;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin: 0.25rem 0;
+
+    @include respond-to("mobile") {
+      font-size: 1.2rem;
+    }
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: $text-secondary;
+  }
+}
+
+.sectionEyebrow {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: $accent-purple;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+// ============================================================
+// TABELA RANGIRANJA
+// ============================================================
+
+.tableWrap {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: $radius-sm;
+  border: 1px solid $border-color;
+  background: rgba($bg-primary, 0.4);
+
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba($accent-neon-blue, 0.35);
+    border-radius: 3px;
+
+    &:hover {
+      background: $accent-neon-blue;
+    }
+  }
+}
+
+.table {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.875rem;
+
+  th {
+    padding: 12px 16px;
+    background: rgba($bg-secondary, 0.85);
+    color: $text-muted;
+    font-size: 0.725rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid $border-color;
+    white-space: nowrap;
+
+    &:first-child {
+      text-align: center;
+      width: 50px;
+    }
+
+    &:last-child {
+      text-align: right;
+    }
+  }
+
+  td {
+    padding: 12px 16px;
+    color: $text-secondary;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    white-space: nowrap;
+    vertical-align: middle;
+
+    &:first-child {
+      text-align: center;
+    }
+
+    &:last-child {
+      text-align: right;
+    }
+  }
+
+  tbody tr {
+    transition: background $transition-fast;
+
+    &:hover {
+      background: rgba($accent-neon-blue, 0.04);
+    }
+
+    &:last-child td {
+      border-bottom: none;
+    }
+  }
+}
+
+// Pozicija / Redni broj u tabeli (#)
+.position {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  height: 26px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: $accent-neon-blue;
+  background: rgba($accent-neon-blue, 0.1);
+  border: 1px solid rgba($accent-neon-blue, 0.25);
+  border-radius: 50%;
+  font-family: monospace;
+}
+
+// Informacije o igraču
+.player {
+  display: flex;
+  flex-direction: column;
+
+  strong {
+    color: $text-primary;
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+}
+
+// Kolona za poene
+.points {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: $accent-neon-blue;
+  font-family: monospace;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 8px rgba($accent-neon-blue, 0.3);
+}

@@ -1,0 +1,120 @@
+@use "../../../../../styles/abstracts/variables" as *;
+@use "../../../../../styles/abstracts/mixins" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.empty {
+  color: $text-secondary;
+  text-align: center;
+  padding: 24px;
+  background: $bg-card;
+  border-radius: $radius-md;
+  border: 1px dashed $border-color;
+  font-size: 0.95rem;
+}
+
+.item {
+  @include flex-between;
+  @include glass-card;
+  padding: 16px 20px;
+  gap: 16px;
+  transition: all $transition-fast;
+
+  &:hover {
+    border-color: rgba(0, 210, 255, 0.6);
+  }
+
+  &.selected {
+    border-color: $accent-neon-blue;
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.25);
+    background: rgba(18, 24, 41, 0.9);
+  }
+
+  @include respond-to("mobile") {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 14px 16px;
+    gap: 12px;
+  }
+}
+
+.infoButton {
+  background: transparent;
+  border: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+  width: 100%;
+
+  @include respond-to("mobile") {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px 12px;
+    align-items: center;
+  }
+}
+
+.number {
+  font-weight: 800;
+  color: $accent-neon-blue;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.name {
+  font-weight: 600;
+  color: $text-primary;
+  font-size: 1rem;
+  flex: 1;
+
+  @include respond-to("mobile") {
+    font-size: 0.95rem;
+  }
+}
+
+.badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: $radius-sm;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+
+  &.open {
+    background: rgba(0, 210, 255, 0.15);
+    color: $accent-neon-blue;
+    border: 1px solid rgba(0, 210, 255, 0.3);
+  }
+
+  &.finished {
+    background: rgba(100, 116, 139, 0.2);
+    color: $text-muted;
+    border: 1px solid rgba(100, 116, 139, 0.3);
+  }
+
+  @include respond-to("mobile") {
+    grid-column: 2;
+    justify-self: start;
+    width: fit-content;
+  }
+}
+
+.matchesCount {
+  font-size: 0.85rem;
+  color: $text-secondary;
+  white-space: nowrap;
+
+  @include respond-to("mobile") {
+    grid-column: 1 / -1;
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,49 @@
+@use "../../../styles/abstracts/variables" as *;
+
+.wrapper {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+label {
+  font-size: 0.9rem;
+
+  font-weight: 600;
+}
+
+.input {
+  height: 48px;
+
+  padding: 0 16px;
+
+  background: $bg-secondary;
+
+  border: 1px solid $border-color;
+
+  border-radius: $radius-sm;
+
+  color: white;
+
+  transition: 0.2s;
+
+  &:focus {
+    outline: none;
+
+    border-color: $accent-neon-blue;
+
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
+  }
+}
+
+.error {
+  border-color: #ef4444;
+}
+
+span {
+  font-size: 0.8rem;
+
+  color: #ef4444;
+}

@@ -1,0 +1,64 @@
+@use "variables" as *;
+
+// --- Flexbox Helpers ---
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// --- Media Queries ---
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == "mobile" {
+    @media (max-width: $mobile) {
+      @content;
+    }
+  } @else if $breakpoint == "tablet" {
+    @media (max-width: $tablet) {
+      @content;
+    }
+  } @else if $breakpoint == "desktop" {
+    @media (max-width: $desktop) {
+      @content;
+    }
+  }
+}
+
+// --- Card Style (Stil za kartice sa svetlećim borderom kao na slici) ---
+@mixin glass-card {
+  background: $bg-card;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid $border-neon;
+  border-radius: $radius-md;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+// --- Button Styles ---
+@mixin btn-outline {
+  background: transparent;
+  border: 1px solid $accent-neon-blue;
+  color: $text-primary;
+  padding: 10px 24px;
+  border-radius: $radius-sm;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: rgba(0, 210, 255, 0.15);
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+    border-color: lighten($accent-neon-blue, 10%);
+  }
+}

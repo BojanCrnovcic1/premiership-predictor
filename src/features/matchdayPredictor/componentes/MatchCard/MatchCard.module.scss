@@ -1,0 +1,115 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+.card {
+  @include glass-card;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition:
+    transform $transition-fast,
+    box-shadow $transition-fast;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba($accent-neon-blue, 0.15);
+  }
+
+  @include respond-to("mobile") {
+    padding: 12px 10px;
+    gap: 10px;
+  }
+}
+
+.matchRow {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+
+  @include respond-to("mobile") {
+    gap: 6px;
+  }
+}
+
+.team {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 6px rgba($bg-primary, 0.8));
+    flex-shrink: 0;
+
+    @include respond-to("mobile") {
+      width: 26px;
+      height: 26px;
+    }
+  }
+
+  span {
+    font-size: 0.95rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: $text-primary;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @include respond-to("mobile") {
+      font-size: 0.8rem;
+    }
+  }
+
+  &.home {
+    justify-content: flex-end;
+    text-align: right;
+
+    @include respond-to("mobile") {
+      gap: 6px;
+    }
+  }
+
+  &.away {
+    justify-content: flex-start;
+    text-align: left;
+
+    @include respond-to("mobile") {
+      gap: 6px;
+      flex-direction: row-reverse;
+    }
+  }
+}
+
+.footer {
+  @include flex-between;
+  padding-top: 10px;
+  border-top: 1px solid $border-color;
+  font-size: 0.8rem;
+
+  @include respond-to("mobile") {
+    font-size: 0.75rem;
+    padding-top: 8px;
+  }
+}
+
+.kickoff {
+  color: $text-secondary;
+  font-weight: 500;
+}
+
+.status {
+  padding: 3px 8px;
+  border-radius: $radius-sm;
+  background: rgba(#ef4444, 0.15);
+  border: 1px solid rgba(#ef4444, 0.4);
+  color: #ef4444;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}

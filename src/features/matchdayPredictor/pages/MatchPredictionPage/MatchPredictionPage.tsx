@@ -1,0 +1,92 @@
+import Loader from "../../../../components/ui/Loader";
+import GameweekSelector from "../../componentes/GameweekSelector/GameweekSelector";
+import MatchCard from "../../componentes/MatchCard/MatchCard";
+import MatchPredictionHeader from "../../componentes/MatchPredictionHeader/MatchPredictionHeader";
+import { useMatchPredictor } from "../../hooks/useMatchPredictor";
+import styles from "./MatchPredictionPage.module.scss";
+
+const CURRENT_SEASON = 2025;
+
+const MatchPredictionPage = () => {
+  const {
+    loading,
+    gameweeks,
+    selectedGameweek,
+    selectedGameweekId,
+    predictions,
+    savingMatchId,
+    setSelectedGameweekId,
+    updatePrediction,
+    savePrediction,
+  } = useMatchPredictor(CURRENT_SEASON);
+
+  if (loading) {
+    return (
+      <div className={styles.stateWrapper}>
+        <Loader text="Loading gameweeks..." />
+      </div>
+    );
+  }
+
+  if (!selectedGameweek) {
+    return (
+      <div className={styles.stateWrapper}>
+        <p className={styles.emptyText}>No gameweeks available.</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className={styles.page}>
+      <MatchPredictionHeader
+        gameweekName={selectedGameweek.name}
+        matchCount={selectedGameweek.matches.length}
+      />
+
+      <div className={styles.toolbar}>
+        <GameweekSelector
+          gameweeks={gameweeks}
+          selectedGameweekId={selectedGameweekId}
+          onChange={setSelectedGameweekId}
+        />
+      </div>
+
+      <div className={styles.matchesGrid}>
+        {selectedGameweek.matches.map((match) => {
+          if (!match.matchId) return null;
+
+          const prediction = predictions[match.matchId];
+
+          return (
+            <MatchCard
+              key={match.matchId}
+              match={match}
+              homeScore={prediction?.homeScore ?? null}
+              awayScore={prediction?.awayScore ?? null}
+              isBoosted={prediction?.isBoosted ?? false}
+              saving={savingMatchId === match.matchId}
+              onHomeScoreChange={(value) =>
+                updatePrediction(match.matchId!, {
+                  homeScore: value,
+                })
+              }
+              onAwayScoreChange={(value) =>
+                updatePrediction(match.matchId!, {
+                  awayScore: value,
+                })
+              }
+              onBoostChange={(value) =>
+                updatePrediction(match.matchId!, {
+                  isBoosted: value,
+                })
+              }
+              onSave={() => void savePrediction(match.matchId!)}
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+export default MatchPredictionPage;

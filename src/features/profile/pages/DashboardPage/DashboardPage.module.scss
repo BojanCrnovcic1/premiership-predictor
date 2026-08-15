@@ -1,0 +1,22 @@
+@use "../../../../styles/abstracts/variables" as *;
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2rem;
+}
+
+.cards {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 2rem;
+}
+
+@media (max-width: $tablet) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,38 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+.page {
+  width: 100%;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 32px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid $border-color;
+}
+
+.matchesGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.stateWrapper {
+  min-height: 50vh;
+  @include flex-center;
+  width: 100%;
+}
+
+.emptyText {
+  color: $text-secondary;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}

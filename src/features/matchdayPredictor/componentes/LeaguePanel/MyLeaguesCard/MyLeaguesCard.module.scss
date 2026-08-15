@@ -1,0 +1,182 @@
+@use "../../../../../styles/abstracts/variables" as *;
+@use "../../../../../styles/abstracts/mixins" as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: $text-primary;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  span {
+    color: $text-muted;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+}
+
+.empty {
+  margin: 0;
+  color: $text-secondary;
+  font-size: 0.95rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.league {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px;
+
+  border: 1px solid $border-color;
+  border-radius: $radius-md;
+  background: rgba(255, 255, 255, 0.03);
+  transition:
+    background $transition-fast,
+    border-color $transition-fast,
+    transform $transition-fast;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba($accent-neon-blue, 0.22);
+    transform: translateY(-1px);
+  }
+}
+
+.leagueTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.leagueMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+
+  strong {
+    font-size: 1rem;
+    color: $text-primary;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  span {
+    color: $text-muted;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}
+
+.badge {
+  flex-shrink: 0;
+  padding: 6px 10px;
+  border-radius: 999px;
+
+  background: rgba(0, 210, 255, 0.08);
+  border: 1px solid rgba(0, 210, 255, 0.18);
+  color: $accent-neon-blue;
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.infoRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+
+  span {
+    color: $text-secondary;
+    font-size: 0.9rem;
+
+    strong {
+      color: $text-primary;
+    }
+  }
+}
+
+.tableWrap {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: $radius-md;
+}
+
+.table {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 12px 10px;
+    text-align: left;
+    border-bottom: 1px solid $border-color;
+    font-size: 0.92rem;
+    vertical-align: middle;
+  }
+
+  th {
+    color: $text-muted;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.78rem;
+  }
+
+  td {
+    color: $text-primary;
+  }
+
+  tbody tr {
+    transition: background $transition-fast;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+  }
+}
+
+.noMembers {
+  text-align: center;
+  color: $text-secondary;
+  padding: 18px 10px;
+}
+
+@include respond-to("mobile") {
+  .league {
+    padding: 14px;
+  }
+
+  .leagueTop {
+    flex-direction: column;
+  }
+
+  .badge {
+    width: fit-content;
+  }
+}

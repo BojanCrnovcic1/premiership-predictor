@@ -1,0 +1,197 @@
+@use "../../../styles/abstracts/variables" as *;
+@use "../../../styles/abstracts/mixins" as *;
+
+.footer {
+  width: 100%;
+  background: linear-gradient(180deg, $bg-primary 0%, $bg-secondary 100%);
+  border-top: 1px solid $border-color;
+  padding: 60px 0 28px 0;
+  position: relative;
+  z-index: 2;
+
+  // Suptilni glowing linijski akcenat na samom vrhu footera
+  &::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    max-width: 600px;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      $accent-neon-blue 50%,
+      transparent 100%
+    );
+    opacity: 0.6;
+  }
+
+  @include respond-to("mobile") {
+    padding: 32px 0 20px 0;
+  }
+}
+
+.container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+
+  @include respond-to("mobile") {
+    padding: 0 16px;
+  }
+}
+
+// ==========================================
+// DESKTOP VIEW
+// ==========================================
+.footerDesktop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+  @include respond-to("mobile") {
+    display: none;
+  }
+
+  .footerBrand {
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    // Kontrola veličine logotipa na desktopu
+    :global(img),
+    :global(svg) {
+      max-width: 160px;
+      height: auto;
+    }
+
+    .brandDesc {
+      font-size: 0.85rem;
+      color: $text-secondary;
+      line-height: 1.6;
+    }
+  }
+
+  .footerNav {
+    display: flex;
+    gap: 64px;
+
+    @include respond-to("tablet") {
+      gap: 36px;
+    }
+
+    .navGroup {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      h4 {
+        font-size: 0.8rem;
+        font-weight: 800;
+        letter-spacing: 1.5px;
+        color: $text-primary;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+      }
+
+      a {
+        font-size: 0.85rem;
+        color: $text-secondary;
+        text-decoration: none;
+        transition: all $transition-fast;
+        width: fit-content;
+
+        &:hover {
+          color: $accent-neon-blue;
+          transform: translateX(3px);
+        }
+      }
+    }
+  }
+}
+
+// ==========================================
+// MOBILE VIEW (Terms, Privacy, Contact + Logo)
+// ==========================================
+.footerMobile {
+  display: none;
+
+  @include respond-to("mobile") {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+    .mobileLinks {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+
+      a {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: $text-secondary;
+        text-decoration: none;
+        letter-spacing: 0.5px;
+        transition: color $transition-fast;
+
+        &:hover,
+        &:active {
+          color: $accent-neon-blue;
+        }
+      }
+    }
+
+    .mobileLogo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      // STRIKTNO SMANJIVANJE LOGO KOMPONENTE NA MOBILNOM
+      width: 100%;
+
+      :global(img),
+      :global(svg),
+      :global(div) {
+        max-width: 100px !important; // Smanjeno sa 140px na 100px
+        max-height: 36px !important;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+      }
+    }
+  }
+}
+
+// ==========================================
+// FOOTER BOTTOM (Copyright)
+// ==========================================
+.footerBottom {
+  padding-top: 24px;
+  text-align: center;
+
+  p {
+    font-size: 0.75rem;
+    color: $text-muted;
+    letter-spacing: 0.5px;
+  }
+
+  @include respond-to("mobile") {
+    padding-top: 18px;
+
+    p {
+      font-size: 0.7rem;
+    }
+  }
+}

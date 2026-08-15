@@ -1,0 +1,312 @@
+@use "../../styles/abstracts/variables" as *;
+@use "../../styles/abstracts/mixins" as *;
+
+// ==========================================
+// 1. PAGE CONTAINER & ANIMATIONS
+// ==========================================
+.page {
+  width: 100%;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+// ==========================================
+// 2. HEADER
+// ==========================================
+.header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+
+  span {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: $accent-neon-blue;
+    text-transform: uppercase;
+    text-shadow: 0 0 12px rgba($accent-neon-blue, 0.4);
+  }
+
+  h1 {
+    margin: 0;
+    background: linear-gradient(
+      135deg,
+      $text-primary 30%,
+      $accent-neon-blue 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  p {
+    font-size: 1.05rem;
+    color: $text-secondary;
+    line-height: 1.6;
+    margin: 0;
+  }
+}
+
+// ==========================================
+// 3. MAIN SECTIONS (Glass Cards)
+// ==========================================
+.section {
+  @include glass-card;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  position: relative;
+  overflow: hidden;
+
+  // Blagi radial glow efekat u gornjem desnom uglu
+  &::before {
+    content: "";
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(
+      circle,
+      rgba($accent-purple, 0.2) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid $border-color;
+
+  span {
+    font-size: 2.25rem;
+    font-weight: 900;
+    font-family: $font-main;
+    color: transparent;
+    -webkit-text-stroke: 1px $accent-neon-blue;
+    line-height: 1;
+    opacity: 0.85;
+  }
+
+  h2 {
+    margin: 0 0 4px 0;
+    color: $text-primary;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: $text-secondary;
+  }
+}
+
+// ==========================================
+// 4. STEPS GRID & CARDS (<article>)
+// ==========================================
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+
+  article {
+    background: rgba($bg-secondary, 0.5);
+    border: 1px solid $border-color;
+    border-radius: $radius-md;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    transition:
+      transform $transition-fast,
+      border-color $transition-fast,
+      box-shadow $transition-fast;
+
+    &:hover {
+      transform: translateY(-3px);
+      border-color: rgba($accent-neon-blue, 0.4);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+
+      span {
+        color: $accent-neon-blue;
+        text-shadow: 0 0 10px rgba($accent-neon-blue, 0.5);
+      }
+    }
+
+    // Broj koraka unutar kartice
+    span {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: $accent-purple;
+      letter-spacing: 1px;
+      transition:
+        color $transition-fast,
+        text-shadow $transition-fast;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 1.05rem;
+      color: $text-primary;
+      font-weight: 600;
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: $text-secondary;
+      line-height: 1.5;
+    }
+  }
+}
+
+// ==========================================
+// 5. USEFUL TIPS SECTION
+// ==========================================
+.tips {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+
+  div {
+    background: rgba($accent-purple, 0.08);
+    border: 1px solid rgba($accent-purple, 0.25);
+    border-radius: $radius-md;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition:
+      border-color $transition-fast,
+      background $transition-fast;
+
+    &:hover {
+      background: rgba($accent-purple, 0.12);
+      border-color: rgba($accent-neon-blue, 0.4);
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 1.05rem;
+      color: $accent-neon-blue;
+      display: flex;
+      align-items: center;
+
+      &::before {
+        content: "💡";
+        font-size: 0.9rem;
+        margin-right: 8px;
+      }
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: $text-secondary;
+      line-height: 1.5;
+    }
+  }
+}
+
+// ==========================================
+// 6. ANIMATIONS
+// ==========================================
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ==========================================
+// 7. RESPONSIVE BREAKPOINTS
+// ==========================================
+@include respond-to("tablet") {
+  .page {
+    padding: 30px 16px 60px;
+    gap: 28px;
+  }
+
+  .section {
+    padding: 28px;
+    gap: 22px;
+  }
+
+  .sectionHeader {
+    gap: 16px;
+
+    span {
+      font-size: 1.85rem;
+    }
+  }
+
+  .steps,
+  .tips {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@include respond-to("mobile") {
+  .page {
+    padding: 20px 12px 40px;
+    gap: 20px;
+  }
+
+  .header {
+    p {
+      font-size: 0.9rem;
+    }
+  }
+
+  .section {
+    padding: 20px 16px;
+    gap: 18px;
+  }
+
+  .sectionHeader {
+    padding-bottom: 14px;
+
+    span {
+      font-size: 1.5rem;
+    }
+  }
+
+  .steps,
+  .tips {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .steps article,
+  .tips div {
+    padding: 16px;
+
+    h3 {
+      font-size: 1rem;
+    }
+
+    p {
+      font-size: 0.88rem;
+    }
+  }
+}

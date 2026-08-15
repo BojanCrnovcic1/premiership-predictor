@@ -1,0 +1,97 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+.container {
+  @include glass-card;
+  padding: 28px;
+  width: 100%;
+
+  h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    background: linear-gradient(
+      135deg,
+      $text-primary 30%,
+      $accent-neon-blue 100%
+    );
+    @supports (-webkit-background-clip: text) {
+      -webkit-background-clip: text;
+    }
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.empty {
+  color: $text-muted;
+  font-style: italic;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 50px 1fr 1fr auto;
+  align-items: center;
+  padding: 14px 18px;
+  background: rgba(18, 24, 41, 0.6);
+  border: 1px solid $border-color;
+  border-radius: $radius-sm;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: rgba(0, 210, 255, 0.05);
+    border-color: $border-neon;
+    transform: translateX(4px);
+  }
+
+  // Zlatni, srebrni i bronzani sjaj za prva 3 mesta
+  &:nth-child(1) .rank {
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  }
+  &:nth-child(2) .rank {
+    color: #c0c0c0;
+  }
+  &:nth-child(3) .rank {
+    color: #cd7f32;
+  }
+
+  @include respond-to("mobile") {
+    grid-template-columns: 40px 1fr auto;
+    gap: 8px;
+  }
+}
+
+.rank {
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: $text-secondary;
+}
+
+.name {
+  font-weight: 700;
+  color: $text-primary;
+  font-size: 0.95rem;
+}
+
+.team {
+  color: $text-secondary;
+  font-size: 0.85rem;
+
+  @include respond-to("mobile") {
+    display: none; // Sakriva naziv tima na malim ekranima zbog prostora
+  }
+}
+
+.points {
+  font-size: 1rem;
+  font-weight: 800;
+  color: $accent-neon-blue;
+  text-align: right;
+}

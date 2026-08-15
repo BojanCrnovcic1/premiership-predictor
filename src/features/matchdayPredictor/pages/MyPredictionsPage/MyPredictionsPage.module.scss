@@ -1,0 +1,131 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+.page {
+  width: 100%;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 32px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @include respond-to("mobile") {
+    padding: 20px 12px;
+    gap: 16px;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  @include respond-to("mobile") {
+    text-align: center;
+    align-items: center;
+  }
+}
+
+.title {
+  font-size: clamp(1.8rem, 4vw, 2.75rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  margin: 0;
+  background: linear-gradient(
+    135deg,
+    $text-primary 30%,
+    $accent-neon-blue 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  color: $text-secondary;
+  font-size: 1rem;
+  margin: 0;
+
+  @include respond-to("mobile") {
+    font-size: 0.875rem;
+  }
+}
+
+.toolbar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid $border-color;
+
+  @include respond-to("mobile") {
+    justify-content: center;
+    width: 100%;
+
+    > * {
+      width: 100%;
+    }
+  }
+}
+
+.matchesGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @include respond-to("mobile") {
+    gap: 12px;
+  }
+}
+
+// --- Save Section ---
+.saveSection {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-top: 16px;
+  border-top: 1px solid $border-color;
+  margin-top: 8px;
+
+  @include respond-to("mobile") {
+    justify-content: center;
+    position: sticky;
+    bottom: 16px;
+    z-index: 10;
+    background: rgba($bg-primary, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 12px;
+    border: 1px solid $border-neon;
+    border-radius: $radius-md;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.saveButton {
+  @include respond-to("mobile") {
+    width: 100%;
+  }
+}
+
+// --- Loading & Empty States ---
+.stateWrapper {
+  min-height: 50vh;
+  @include flex-center;
+  width: 100%;
+  padding: 2rem 1rem;
+}
+
+.emptyText {
+  @include glass-card;
+  padding: 2.5rem;
+  color: $text-secondary;
+  font-size: 1.05rem;
+  letter-spacing: 0.5px;
+  text-align: center;
+  border: 1px dashed $border-color;
+  max-width: 400px;
+  width: 100%;
+}

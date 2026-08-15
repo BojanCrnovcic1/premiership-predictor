@@ -1,0 +1,134 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+
+  @include respond-to("mobile") {
+    gap: 16px;
+  }
+}
+
+.header {
+  min-width: 0;
+
+  h1 {
+    font-size: clamp(1.6rem, 3vw, 2.5rem);
+
+    background: linear-gradient(
+      135deg,
+      $text-primary 30%,
+      $accent-neon-blue 100%
+    );
+
+    @supports (background-clip: text) {
+      background-clip: text;
+    }
+
+    -webkit-text-fill-color: transparent;
+  }
+
+  p {
+    color: $text-secondary;
+    margin-top: 4px;
+    font-size: 0.95rem;
+  }
+
+  @include respond-to("mobile") {
+    p {
+      font-size: 0.85rem;
+    }
+  }
+}
+
+.emptySelection {
+  @include glass-card;
+
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+
+  padding: 40px 24px;
+
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+
+  h2 {
+    color: $text-primary;
+    font-size: 1.4rem;
+  }
+
+  p {
+    color: $text-secondary;
+    font-size: 0.9rem;
+  }
+
+  @include respond-to("mobile") {
+    padding: 24px 16px;
+  }
+}
+
+.statusMessage {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 12px 16px;
+
+  border-radius: $radius-sm;
+
+  font-size: 0.9rem;
+  font-weight: 500;
+
+  background: rgba(0, 210, 255, 0.1);
+  border: 1px solid rgba(0, 210, 255, 0.3);
+
+  color: $accent-neon-blue;
+
+  @include respond-to("mobile") {
+    font-size: 0.85rem;
+    padding: 10px 12px;
+  }
+}
+
+.errorMessage {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 12px 16px;
+
+  border-radius: $radius-sm;
+
+  font-size: 0.9rem;
+  font-weight: 500;
+
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+
+  color: #ef4444;
+
+  @include respond-to("mobile") {
+    font-size: 0.85rem;
+    padding: 10px 12px;
+  }
+}
+
+.loaderWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  min-width: 0;
+
+  padding: 32px 0;
+}

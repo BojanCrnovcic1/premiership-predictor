@@ -1,0 +1,25 @@
+@use "../../../../styles/abstracts/variables" as *;
+
+.header {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.5rem;
+
+  margin-bottom: 3rem;
+
+  span {
+    color: $text-muted;
+  }
+
+  h1 {
+    color: $text-primary;
+
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  p {
+    color: $text-secondary;
+  }
+}

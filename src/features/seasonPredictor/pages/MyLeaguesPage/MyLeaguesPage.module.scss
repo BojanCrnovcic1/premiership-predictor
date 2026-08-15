@@ -1,0 +1,651 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+// ============================================================
+// STRANICA & LAYOUT
+// ============================================================
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-bottom: 3rem;
+
+  @include respond-to("mobile") {
+    gap: 1.25rem;
+    padding-bottom: 2rem;
+  }
+}
+
+// Naslov "My Leagues"
+.title {
+  font-size: clamp(1.6rem, 4vw, 2.8rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  background: linear-gradient(
+    135deg,
+    $text-primary 30%,
+    $accent-neon-blue 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  @include respond-to("mobile") {
+    text-align: center;
+  }
+}
+
+// Loading & Error stanja
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  color: $text-secondary;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+// Empty state (Kada korisnik nije ni u jednoj ligi)
+.empty {
+  @include glass-card;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  color: $text-secondary;
+  font-size: 1rem;
+}
+
+// Grid raspored kartica
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.75rem;
+
+  @include respond-to("tablet") {
+    gap: 1.25rem;
+  }
+
+  @include respond-to("mobile") {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+// ============================================================
+// KARTICA LIGE
+// ============================================================
+
+.card {
+  @include glass-card;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  box-sizing: border-box;
+  transition:
+    transform $transition-fast,
+    box-shadow $transition-fast;
+
+  @include respond-to("mobile") {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 210, 255, 0.15);
+  }
+}
+
+// Header kartice
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+
+  h3 {
+    font-size: 1.25rem;
+    color: $text-primary;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.01em;
+    word-break: break-word;
+
+    @include respond-to("mobile") {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+.playersCount {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: $accent-neon-blue;
+  background: rgba($accent-neon-blue, 0.1);
+  border: 1px solid rgba($accent-neon-blue, 0.25);
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+}
+
+.badgeGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: rgba($accent-purple, 0.2);
+  color: lighten($accent-purple, 25%);
+  border: 1px solid rgba($accent-purple, 0.4);
+  white-space: nowrap;
+
+  &.public {
+    background: rgba($accent-neon-blue, 0.12);
+    color: $accent-neon-blue;
+    border-color: rgba($accent-neon-blue, 0.4);
+    box-shadow: 0 0 10px rgba($accent-neon-blue, 0.15);
+  }
+}
+
+.codeBox {
+  font-size: 0.85rem;
+  color: $text-muted;
+  background: rgba($bg-primary, 0.6);
+  padding: 8px 12px;
+  border-radius: $radius-sm;
+  border: 1px solid $border-color;
+  align-self: flex-start;
+  max-width: 100%;
+  word-break: break-all;
+
+  span {
+    color: $accent-neon-blue;
+    font-weight: 700;
+    font-family: monospace;
+    letter-spacing: 1px;
+    margin-left: 6px;
+  }
+}
+
+.season {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: $text-secondary;
+  letter-spacing: 0.5px;
+}
+
+.loadingLeague {
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: $text-muted;
+  background: rgba($bg-primary, 0.3);
+  border-radius: $radius-sm;
+  border: 1px dashed $border-color;
+}
+
+// ============================================================
+// TABELA
+// ============================================================
+
+.tableWrap {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  border-radius: $radius-sm;
+  border: 1px solid $border-color;
+  background: rgba($bg-primary, 0.4);
+
+  &::-webkit-scrollbar {
+    height: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba($accent-neon-blue, 0.4);
+    border-radius: 3px;
+
+    &:hover {
+      background: $accent-neon-blue;
+    }
+  }
+}
+
+.table {
+  width: 100%;
+  min-width: 480px;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.85rem;
+
+  @include respond-to("mobile") {
+    font-size: 0.8rem;
+  }
+
+  th {
+    padding: 10px 12px;
+    background: rgba($bg-secondary, 0.85);
+    color: $text-muted;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid $border-color;
+    white-space: nowrap;
+  }
+
+  td {
+    padding: 10px 12px;
+    color: $text-secondary;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    white-space: nowrap;
+
+    &:first-child {
+      font-weight: 700;
+      color: $accent-neon-blue;
+      text-align: center;
+      width: 32px;
+    }
+
+    strong {
+      color: $text-primary;
+    }
+  }
+
+  tbody tr {
+    transition: background $transition-fast;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    &:last-child td {
+      border-bottom: none;
+    }
+  }
+}
+
+// Interaktivni red u tabeli
+.clickableRow {
+  cursor: pointer;
+
+  &:hover {
+    background: rgba($accent-neon-blue, 0.06) !important;
+  }
+}
+
+.noMembers {
+  text-align: center !important;
+  color: $text-muted !important;
+  padding: 1.5rem !important;
+}
+
+.playerCell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.owner {
+  display: inline-block;
+  padding: 2px 6px;
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, $accent-purple, $accent-pink);
+  color: $text-primary;
+  border-radius: 4px;
+  line-height: 1;
+}
+
+// Dugme "View" u tabeli
+.predictionButton {
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: $accent-neon-blue;
+  background: rgba($accent-neon-blue, 0.1);
+  border: 1px solid rgba($accent-neon-blue, 0.3);
+  border-radius: $radius-sm;
+  cursor: pointer;
+  transition: all $transition-fast;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  &:hover {
+    background: $accent-neon-blue;
+    color: $bg-primary;
+    box-shadow: 0 0 10px rgba($accent-neon-blue, 0.4);
+  }
+}
+
+// Dugme za napuštanje lige
+.leaveButton {
+  margin-top: auto;
+  width: 100%;
+  padding: 12px 18px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-radius: $radius-sm;
+  color: #ef4444;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover:not(:disabled) {
+    background: rgba(239, 68, 68, 0.22);
+    border-color: #ef4444;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// ============================================================
+// STILOVI ZA PREDICTION MODAL
+// ============================================================
+
+.predictionModal {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding-top: 0.25rem;
+}
+
+.predictionModalHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  border-bottom: 1px solid $border-color;
+  padding-bottom: 0.85rem;
+
+  h2 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: $text-primary;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: $accent-neon-blue;
+    letter-spacing: 0.2px;
+  }
+}
+
+// Stanja unutar modala (Loading / Error / Empty)
+.predictionLoading,
+.predictionEmpty {
+  padding: 2.5rem 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: $text-secondary;
+  background: rgba($bg-primary, 0.4);
+  border-radius: $radius-sm;
+  border: 1px dashed $border-color;
+}
+
+.predictionError {
+  padding: 1.5rem 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.08);
+  border-radius: $radius-sm;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+// Lista predviđenih timova
+.predictionList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 380px;
+  overflow-y: auto;
+  padding-right: 4px;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba($accent-neon-blue, 0.35);
+    border-radius: 3px;
+
+    &:hover {
+      background: $accent-neon-blue;
+    }
+  }
+}
+
+// Stavka pojedinačnog tima u predikciji
+.predictionItem {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 8px 12px;
+  background: rgba($bg-primary, 0.5);
+  border: 1px solid $border-color;
+  border-radius: $radius-sm;
+  transition:
+    border-color $transition-fast,
+    background $transition-fast;
+
+  &:hover {
+    border-color: rgba($accent-neon-blue, 0.35);
+    background: rgba($bg-primary, 0.8);
+  }
+}
+
+.predictionPosition {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: $accent-neon-blue;
+  min-width: 24px;
+  text-align: center;
+  font-family: monospace;
+}
+
+.predictionLogo {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+}
+
+.predictionTeam {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: $text-primary;
+  letter-spacing: 0.2px;
+}
+
+// ============================================================
+// LEAVE LEAGUE CONFIRMATION MODAL
+// ============================================================
+
+.leaveModal {
+  width: min(100%, 420px);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.leaveModalHeader {
+  padding-right: 2rem;
+
+  h2 {
+    margin: 0 0 0.5rem;
+
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: $text-primary;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    margin: 0;
+
+    color: $text-secondary;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+}
+
+.leaveModalWarning {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+
+  padding: 0.9rem 1rem;
+
+  background: rgba(239, 68, 68, 0.07);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-radius: $radius-sm;
+
+  color: #fca5a5;
+  font-size: 0.8rem;
+  line-height: 1.55;
+
+  &::before {
+    content: "!";
+
+    flex: 0 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 21px;
+    height: 21px;
+
+    margin-top: 1px;
+
+    border: 1px solid rgba(239, 68, 68, 0.5);
+    border-radius: 50%;
+
+    color: #ef4444;
+    font-size: 0.7rem;
+    font-weight: 800;
+  }
+}
+
+.leaveModalActions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.75rem;
+
+  padding-top: 0.25rem;
+
+  button {
+    min-width: 120px;
+
+    padding: 10px 18px;
+
+    border-radius: $radius-sm;
+
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    cursor: pointer;
+
+    transition:
+      background $transition-fast,
+      border-color $transition-fast,
+      color $transition-fast,
+      box-shadow $transition-fast,
+      transform $transition-fast;
+
+    &:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.leaveModalCancel {
+  background: rgba($bg-secondary, 0.65);
+  border: 1px solid $border-color;
+  color: $text-secondary;
+
+  &:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: $text-primary;
+  }
+}
+
+.leaveModalConfirm {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.45);
+  color: #ef4444;
+
+  &:hover:not(:disabled) {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: #ef4444;
+    box-shadow:
+      0 0 12px rgba(239, 68, 68, 0.2),
+      inset 0 0 10px rgba(239, 68, 68, 0.05);
+  }
+}
+
+@include respond-to("mobile") {
+  .leaveModal {
+    width: 100%;
+  }
+
+  .leaveModalActions {
+    flex-direction: column-reverse;
+    width: 100%;
+
+    button {
+      width: 100%;
+    }
+  }
+}

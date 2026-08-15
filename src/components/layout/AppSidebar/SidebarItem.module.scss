@@ -1,0 +1,80 @@
+@use "../../../styles/abstracts/variables" as *;
+@use "../../../styles/abstracts/mixins" as *;
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.85rem 1rem;
+  border-radius: $radius-md;
+  color: #94a3b8; // Svijetlo sivo-plava umjesto crvene
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all $transition-fast;
+
+  // Resetuje browser default boje za linkove i posjećene stranice (:visited)
+  &:link,
+  &:visited {
+    color: #94a3b8;
+  }
+
+  > span {
+    color: inherit;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+
+    &:link,
+    &:visited {
+      color: #ffffff;
+    }
+
+    .icon {
+      color: $accent-neon-blue;
+    }
+  }
+}
+
+.active {
+  background: linear-gradient(
+    135deg,
+    #2563eb,
+    #06b6d4
+  ); // Plavo-cijan gradijent
+  color: #ffffff !important;
+  box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+
+  &:link,
+  &:visited {
+    color: #ffffff !important;
+  }
+
+  > span {
+    color: #ffffff !important;
+    font-weight: 700;
+  }
+
+  .icon {
+    color: #ffffff !important;
+  }
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  flex-shrink: 0;
+  transition: color $transition-fast;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}

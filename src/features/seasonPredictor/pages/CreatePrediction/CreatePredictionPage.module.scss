@@ -1,0 +1,84 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 24px 20px 48px;
+
+  @include respond-to("tablet") {
+    gap: 24px;
+    padding: 20px 16px 36px;
+  }
+
+  @include respond-to("mobile") {
+    gap: 20px;
+    padding: 16px 12px 28px;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 8px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: $radius-md;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+
+  @include respond-to("mobile") {
+    padding: 16px 12px;
+  }
+}
+
+.message {
+  width: 100%;
+  max-width: 480px;
+  padding: 10px 16px;
+  border-radius: $radius-sm;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 0.3px;
+  animation: fadeIn 0.2s ease-in-out;
+
+  &.success {
+    background: rgba(0, 230, 118, 0.12);
+    border: 1px solid rgba(0, 230, 118, 0.3);
+    color: #00e676;
+  }
+
+  &.error {
+    background: rgba(255, 77, 77, 0.12);
+    border: 1px solid rgba(255, 77, 77, 0.3);
+    color: #ff6b6b;
+  }
+}
+
+.loading {
+  @include flex-center;
+  min-height: 350px;
+  color: $text-secondary;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

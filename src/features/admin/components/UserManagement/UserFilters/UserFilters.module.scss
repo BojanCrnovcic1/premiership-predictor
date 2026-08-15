@@ -1,0 +1,50 @@
+@use "../../../../../styles/abstracts/variables" as *;
+@use "../../../../../styles/abstracts/mixins" as *;
+
+.card {
+  @include glass-card;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  @include respond-to("mobile") {
+    padding: 16px;
+    gap: 16px;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  align-items: flex-end;
+
+  > div {
+    min-width: 0;
+  }
+
+  @include respond-to("desktop") {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to("mobile") {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    min-width: 140px;
+  }
+
+  @include respond-to("mobile") {
+    button {
+      width: 100%;
+    }
+  }
+}

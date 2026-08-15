@@ -1,0 +1,13 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+.page {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 16px;
+
+  @include respond-to("mobile") {
+    padding: 16px 12px;
+  }
+}

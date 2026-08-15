@@ -1,0 +1,64 @@
+@use "../../../styles/abstracts/variables" as *;
+
+.sidebar {
+  width: 280px;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  background: $bg-secondary;
+
+  border-right: 1px solid $border-color;
+
+  transition: transform 0.35s ease;
+
+  z-index: 100;
+}
+
+.sidebar > :nth-child(2) {
+  flex: 1;
+}
+
+.overlay {
+  display: none;
+}
+
+@media (max-width: $desktop) {
+  .sidebar {
+    position: fixed;
+
+    left: 0;
+    top: 0;
+
+    transform: translateX(-100%);
+  }
+
+  .open {
+    transform: translateX(0);
+  }
+
+  .overlay {
+    display: block;
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: 0.3s;
+
+    z-index: 90;
+  }
+
+  .showOverlay {
+    opacity: 1;
+
+    pointer-events: auto;
+  }
+}

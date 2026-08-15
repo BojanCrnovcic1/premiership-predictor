@@ -1,0 +1,25 @@
+@use "../../../styles/abstracts/variables" as *;
+
+.card {
+  background: $bg-card;
+
+  -webkit-backdrop-filter: blur(14px);
+
+  backdrop-filter: blur(14px);
+
+  border: 1px solid $border-neon;
+
+  border-radius: $radius-md;
+
+  padding: 20px;
+
+  transition: 0.25s;
+
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+
+  &:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 0 30px rgba(0, 210, 255, 0.25);
+  }
+}

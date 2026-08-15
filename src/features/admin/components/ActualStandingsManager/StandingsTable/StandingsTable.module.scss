@@ -1,0 +1,30 @@
+@use "../../../../../styles/abstracts/variables" as *;
+@use "../../../../../styles/abstracts/mixins" as *;
+
+.wrapper {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+@include respond-to("mobile") {
+  .wrapper {
+    width: 100%;
+  }
+
+  .list {
+    gap: 8px;
+  }
+}

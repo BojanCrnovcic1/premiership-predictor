@@ -1,0 +1,177 @@
+@use "../../../../../styles/abstracts/variables" as *;
+@use "../../../../../styles/abstracts/mixins" as *;
+
+.card {
+  @include glass-card;
+
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+
+  padding: 24px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  overflow: hidden;
+
+  h2 {
+    font-size: 1.4rem;
+    color: $text-primary;
+    margin: 0;
+  }
+
+  @include respond-to("mobile") {
+    padding: 16px;
+    gap: 16px;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  min-width: 0;
+
+  p {
+    margin: 0;
+
+    color: $text-secondary;
+
+    font-size: 0.85rem;
+    line-height: 1.5;
+
+    overflow-wrap: anywhere;
+  }
+
+  @include respond-to("mobile") {
+    p {
+      font-size: 0.78rem;
+    }
+
+    h2 {
+      font-size: 1.15rem;
+    }
+  }
+}
+
+.grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 16px;
+
+  width: 100%;
+  min-width: 0;
+
+  > div {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  @include respond-to("tablet") {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  @include respond-to("mobile") {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+}
+
+.selectGroup {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+
+  min-width: 0;
+  max-width: 100%;
+
+  label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: $text-primary;
+  }
+
+  @include respond-to("mobile") {
+    gap: 6px;
+
+    label {
+      font-size: 0.82rem;
+    }
+  }
+}
+
+.select {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  height: 48px;
+
+  padding: 0 40px 0 14px;
+
+  box-sizing: border-box;
+
+  background-color: $bg-secondary;
+
+  border: 1px solid $border-color;
+  border-radius: $radius-sm;
+
+  color: $text-primary;
+
+  font-family: $font-main;
+  font-size: 0.95rem;
+
+  transition:
+    border-color $transition-fast,
+    box-shadow $transition-fast;
+
+  cursor: pointer;
+
+  appearance: none;
+
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%23a0aec0' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+
+  &:focus {
+    outline: none;
+
+    border-color: $accent-neon-blue;
+
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  option {
+    background: $bg-secondary;
+    color: $text-primary;
+
+    &:disabled {
+      color: $text-muted;
+    }
+  }
+
+  @include respond-to("mobile") {
+    height: 44px;
+
+    font-size: 0.85rem;
+
+    padding-left: 12px;
+    padding-right: 36px;
+
+    background-position: right 8px center;
+  }
+}

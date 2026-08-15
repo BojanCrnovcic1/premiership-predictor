@@ -1,0 +1,53 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px 5px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+
+  &:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: linear-gradient(
+      135deg,
+      $text-primary 30%,
+      $accent-neon-blue 100%
+    );
+    @supports (background-clip: text) {
+      background-clip: text;
+    }
+    @supports (-webkit-background-clip: text) {
+      -webkit-background-clip: text;
+    }
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 4px;
+  }
+}
+
+.types {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+
+  button {
+    flex: 1;
+  }
+}
+
+@include respond-to("mobile") {
+  .types {
+    flex-direction: column;
+  }
+}

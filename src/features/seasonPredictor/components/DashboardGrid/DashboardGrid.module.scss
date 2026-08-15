@@ -1,0 +1,19 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  width: 100%;
+  align-items: stretch;
+
+  @include respond-to("desktop") {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to("tablet") {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

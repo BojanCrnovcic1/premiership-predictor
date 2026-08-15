@@ -1,0 +1,58 @@
+@use "../../../styles/abstracts/variables" as *;
+
+.header {
+  position: relative; // Neophodno za apsolutno pozicioniranje close dugmeta
+  padding: 1.5rem;
+  border-bottom: 1px solid $border-color;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.team {
+  span {
+    display: block;
+    color: $text-muted;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  h3 {
+    color: $text-primary;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 0.25rem;
+  }
+}
+
+.close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: transparent;
+  border: none;
+  border-radius: 0.375rem; // 6px
+  padding: 0.375rem;
+
+  color: $text-muted;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+
+  &:hover {
+    color: $text-primary;
+    background-color: rgba(255, 255, 255, 0.08); // Blagi hover efekat
+  }
+
+  &:focus-visible {
+    outline: 2px solid $text-primary;
+    outline-offset: 2px;
+  }
+}

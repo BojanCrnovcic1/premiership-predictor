@@ -1,0 +1,81 @@
+@use "../../../../styles/abstracts/variables" as *;
+
+.sidebar {
+  width: 280px;
+  min-height: 100vh;
+
+  background: $bg-secondary;
+
+  border-right: 1px solid $border-color;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  padding: 2rem;
+}
+
+.gameTitle {
+  color: $accent-neon-blue;
+
+  font-weight: 700;
+
+  padding: 0 2rem 1.5rem;
+
+  border-bottom: 1px solid $border-color;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.5rem;
+
+  padding: 1.5rem 1rem;
+}
+
+.overlay {
+  display: none;
+}
+
+@media (max-width: $desktop) {
+  .sidebar {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    transform: translateX(-100%);
+
+    transition: 0.3s;
+
+    z-index: 100;
+  }
+
+  .open {
+    transform: translateX(0);
+  }
+
+  .overlay {
+    display: block;
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.5);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: 0.3s;
+  }
+
+  .show {
+    opacity: 1;
+
+    pointer-events: auto;
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "short_name": "Premier Predictor",
+  "name": "Premiership Predictor",
+  "icons": [
+    {
+      "src": "/logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/logo512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#0b0e1b",
+  "theme_color": "#3b82f6",
+  "display": "standalone",
+  "orientation": "portrait"
+}

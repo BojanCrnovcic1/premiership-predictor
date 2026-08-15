@@ -1,0 +1,63 @@
+@use "../../../styles/abstracts/variables" as *;
+@use "../../../styles/abstracts/mixins" as *;
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.85rem 1rem;
+  border-radius: $radius-md;
+  color: $text-secondary;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: rgba($accent-purple, 0.15);
+    color: $text-primary;
+
+    .icon {
+      color: $accent-neon-blue;
+    }
+  }
+}
+
+.active {
+  background: linear-gradient(
+    90deg,
+    rgba($accent-purple, 0.9),
+    rgba($accent-neon-blue, 0.75)
+  );
+  color: $text-primary;
+  box-shadow: 0 0 18px rgba($accent-neon-blue, 0.25);
+
+  .icon {
+    color: $text-primary;
+  }
+
+  .label {
+    font-weight: 700;
+  }
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $text-muted;
+  flex-shrink: 0;
+  transition: color $transition-fast;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.3px;
+}

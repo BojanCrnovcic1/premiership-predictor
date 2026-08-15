@@ -1,0 +1,113 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 32px 20px 40px;
+
+  @include respond-to("mobile") {
+    padding: 20px 14px 28px;
+  }
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: $text-primary;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 28px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: $radius-md;
+
+  @include respond-to("mobile") {
+    padding: 20px 16px;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: $text-secondary;
+  }
+}
+
+.codeInput {
+  width: 100%;
+  padding: 14px 16px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: $radius-sm;
+  color: $accent-neon-blue;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-align: center;
+  text-transform: uppercase;
+  outline: none;
+  transition:
+    border-color $transition-fast,
+    box-shadow $transition-fast;
+
+  &::placeholder {
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.2);
+    font-weight: 500;
+  }
+
+  &:focus {
+    border-color: $accent-neon-blue;
+    box-shadow: 0 0 12px rgba($accent-neon-blue, 0.25);
+  }
+}
+
+.message {
+  padding: 10px 14px;
+  background: rgba(255, 77, 77, 0.15);
+  border: 1px solid rgba(255, 77, 77, 0.3);
+  border-radius: $radius-sm;
+  color: #ff6b6b;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.submitBtn {
+  margin-top: 8px;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, $accent-purple, $accent-neon-blue);
+  border: none;
+  border-radius: $radius-sm;
+  color: $text-primary;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    opacity $transition-fast,
+    transform $transition-fast;
+
+  &:hover:not(:disabled) {
+    opacity: 0.92;
+    transform: translateY(-1px);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

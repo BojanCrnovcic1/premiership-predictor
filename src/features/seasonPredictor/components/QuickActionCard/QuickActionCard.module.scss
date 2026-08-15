@@ -1,0 +1,25 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  gap: 18px;
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: $text-primary;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  p {
+    flex: 1;
+    font-size: 0.9rem;
+    color: $text-secondary;
+    line-height: 1.5;
+  }
+}

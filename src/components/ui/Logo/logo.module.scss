@@ -1,0 +1,33 @@
+@use "../../../styles/abstracts/variables" as *;
+@use "../../../styles/abstracts/mixins" as *;
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform $transition-fast;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.03); // Blago uvećanje na hover
+
+    .img {
+      filter: drop-shadow(
+        0 0 8px rgba(0, 210, 255, 0.5)
+      ); // Svetleći neon efekat
+    }
+  }
+}
+
+.img {
+  height: 42px; // Optimalna visina za gornji header
+  width: auto;
+  object-fit: contain;
+  display: block;
+  transition: filter $transition-fast;
+
+  @include respond-to("tablet") {
+    height: 36px; // Blago smanjenje za mobilne uređaje i tablete
+  }
+}

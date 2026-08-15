@@ -1,0 +1,74 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+@use "sass:color";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: $text-secondary;
+}
+
+.selectWrapper {
+  position: relative;
+  width: 100%;
+
+  &::after {
+    content: "▼";
+    font-size: 0.75rem;
+    color: $accent-neon-blue;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: transform $transition-fast;
+  }
+
+  &:hover::after {
+    transform: translateY(-30%);
+  }
+}
+
+.select {
+  width: 100%;
+  height: 48px;
+  padding: 0 40px 0 16px;
+  background: $bg-secondary;
+  border: 1px solid $border-neon;
+  border-radius: $radius-sm;
+  color: $text-primary;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition: all $transition-fast;
+
+  &:focus {
+    outline: none;
+    border-color: lighten($accent-neon-blue, 15%);
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.35);
+  }
+}
+
+.option {
+  background-color: $bg-secondary;
+  color: $text-primary;
+  padding: 12px;
+
+  &:disabled {
+    color: $text-muted;
+  }
+}

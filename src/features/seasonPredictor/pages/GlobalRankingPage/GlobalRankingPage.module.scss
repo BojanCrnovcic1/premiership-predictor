@@ -1,0 +1,206 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+// --- Glavni kontejner stranice ---
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-bottom: 3rem;
+  max-width: 850px; // Optimalna širina za rang listu radi bolje preglednosti
+  margin: 0 auto;
+  width: 100%;
+
+  @include respond-to("mobile") {
+    gap: 1.25rem;
+    padding-bottom: 2rem;
+  }
+}
+
+// --- Naslov "Global Ranking" ---
+.title {
+  font-size: clamp(1.6rem, 4vw, 2.8rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  background: linear-gradient(
+    135deg,
+    $text-primary 30%,
+    $accent-neon-blue 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  @include respond-to("mobile") {
+    text-align: center;
+  }
+}
+
+// --- Empty / Loading / Error stanja ---
+.empty {
+  @include glass-card;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  color: $text-secondary;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+// --- Kontejner rang liste ---
+.table {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+
+  @include respond-to("mobile") {
+    gap: 0.5rem;
+  }
+}
+
+// --- Pojedinačni red u rang listi ---
+.row {
+  @include glass-card;
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  gap: 1.25rem;
+  transition:
+    transform $transition-fast,
+    box-shadow $transition-fast,
+    border-color $transition-fast;
+
+  &:hover {
+    transform: translateX(4px);
+    box-shadow: 0 8px 25px rgba(0, 210, 255, 0.12);
+    border-color: rgba($accent-neon-blue, 0.4);
+  }
+
+  @include respond-to("mobile") {
+    padding: 0.875rem 1rem;
+    gap: 0.875rem;
+  }
+
+  // --- Specijalni efekti za TOP 3 igrača ---
+
+  // 1. MESTO - ZLATO
+  &:nth-child(1) {
+    border-left: 4px solid #ffd700;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 215, 0, 0.08) 0%,
+      rgba($bg-secondary, 0.6) 100%
+    );
+
+    .position {
+      color: #ffd700;
+      background: rgba(255, 215, 0, 0.15);
+      border-color: rgba(255, 215, 0, 0.4);
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.25);
+    }
+  }
+
+  // 2. MESTO - SREBRO
+  &:nth-child(2) {
+    border-left: 4px solid #c0c0c0;
+    background: linear-gradient(
+      90deg,
+      rgba(192, 192, 192, 0.08) 0%,
+      rgba($bg-secondary, 0.6) 100%
+    );
+
+    .position {
+      color: #e0e0e0;
+      background: rgba(192, 192, 192, 0.15);
+      border-color: rgba(192, 192, 192, 0.4);
+    }
+  }
+
+  // 3. MESTO - BRONZA
+  &:nth-child(3) {
+    border-left: 4px solid #cd7f32;
+    background: linear-gradient(
+      90deg,
+      rgba(205, 127, 50, 0.08) 0%,
+      rgba($bg-secondary, 0.6) 100%
+    );
+
+    .position {
+      color: #cd7f32;
+      background: rgba(205, 127, 50, 0.15);
+      border-color: rgba(205, 127, 50, 0.4);
+    }
+  }
+}
+
+// --- Pozicija (# rang) ---
+.position {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 1rem;
+  color: $accent-neon-blue;
+  background: rgba($accent-neon-blue, 0.1);
+  border: 1px solid rgba($accent-neon-blue, 0.25);
+  flex-shrink: 0;
+
+  @include respond-to("mobile") {
+    width: 34px;
+    height: 34px;
+    font-size: 0.875rem;
+  }
+}
+
+// --- Igrač i tim ---
+.player {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1;
+  min-width: 0; // Ključno za skraćivanje predugačkog teksta (...) na mobilnim ekranima
+
+  strong {
+    font-size: 1.05rem;
+    color: $text-primary;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @include respond-to("mobile") {
+      font-size: 0.95rem;
+    }
+  }
+
+  span {
+    font-size: 0.825rem;
+    color: $text-muted;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @include respond-to("mobile") {
+      font-size: 0.775rem;
+    }
+  }
+}
+
+// --- Bodovi (Score) ---
+.score {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: $accent-neon-blue;
+  letter-spacing: 0.5px;
+  margin-left: auto;
+  padding-left: 0.5rem;
+  flex-shrink: 0;
+
+  @include respond-to("mobile") {
+    font-size: 1.1rem;
+  }
+}
