@@ -47,7 +47,7 @@ const AboutPage = () => {
 
         <div className={styles.imageWrapper}>
           <img
-            src="src/assets/images/about/arsenal.webp"
+            src="/assets/images/about/arsenal.webp"
             alt="Premier League champions celebrating with the trophy"
           />
         </div>
