@@ -5,6 +5,10 @@
       "destination": "http://91.99.121.15:4000/api/:path*"
     },
     {
+      "source": "/auth/:path*",
+      "destination": "http://91.99.121.15:4000/auth/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
