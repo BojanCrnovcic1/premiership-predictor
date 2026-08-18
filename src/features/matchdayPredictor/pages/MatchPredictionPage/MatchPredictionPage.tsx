@@ -5,7 +5,7 @@ import MatchPredictionHeader from "../../componentes/MatchPredictionHeader/Match
 import { useMatchPredictor } from "../../hooks/useMatchPredictor";
 import styles from "./MatchPredictionPage.module.scss";
 
-const CURRENT_SEASON = 2025;
+const CURRENT_SEASON = 2026;
 
 const MatchPredictionPage = () => {
   const {
@@ -37,6 +37,11 @@ const MatchPredictionPage = () => {
     );
   }
 
+  const sortedMatches = [...selectedGameweek.matches].sort(
+    (a, b) =>
+      new Date(a.kickoffTime).getTime() - new Date(b.kickoffTime).getTime(),
+  );
+
   return (
     <div className={styles.page}>
       <MatchPredictionHeader
@@ -53,7 +58,7 @@ const MatchPredictionPage = () => {
       </div>
 
       <div className={styles.matchesGrid}>
-        {selectedGameweek.matches.map((match) => {
+        {sortedMatches.map((match) => {
           if (!match.matchId) {
             return null;
           }
