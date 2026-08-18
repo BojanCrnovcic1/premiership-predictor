@@ -75,7 +75,7 @@ const Hero = () => {
                       PREDICT THE <br /> FINAL TABLE
                     </h2>
 
-                    <p>Rank all 20 teams for the 2024/25 Season</p>
+                    <p>Rank all 20 teams for the 2026/27 Season</p>
                   </div>
 
                   <img
