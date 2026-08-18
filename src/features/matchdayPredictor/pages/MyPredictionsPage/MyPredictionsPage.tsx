@@ -1,5 +1,5 @@
 import Loader from "../../../../components/ui/Loader";
-import Button from "../../../../components/ui/Button/Button"; // Prilagodi putanju ako je drugačija
+import Button from "../../../../components/ui/Button/Button";
 import GameweekSelector from "../../componentes/GameweekSelector/GameweekSelector";
 import MatchCard from "../../componentes/MatchCard/MatchCard";
 import { useMatchPredictor } from "../../hooks/useMatchPredictor";
@@ -37,6 +37,11 @@ const MyPredictionsPage = () => {
     );
   }
 
+  const sortedMatches = [...selectedGameweek.matches].sort(
+    (a, b) =>
+      new Date(a.kickoffTime).getTime() - new Date(b.kickoffTime).getTime(),
+  );
+
   return (
     <div className={styles.page}>
       <header className={styles.header}>
@@ -56,7 +61,7 @@ const MyPredictionsPage = () => {
       </div>
 
       <div className={styles.matchesGrid}>
-        {selectedGameweek.matches.map((match) => {
+        {sortedMatches.map((match) => {
           if (!match.matchId) {
             return null;
           }
@@ -95,7 +100,7 @@ const MyPredictionsPage = () => {
           onClick={() => void savePredictions()}
           className={styles.saveButton}
         >
-          {savingPredictions ? "Saving predictions..." : "Save Predictions"}
+          Save Predictions
         </Button>
       </div>
     </div>

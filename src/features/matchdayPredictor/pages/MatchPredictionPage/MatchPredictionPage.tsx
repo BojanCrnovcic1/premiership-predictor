@@ -1,4 +1,5 @@
 import Loader from "../../../../components/ui/Loader";
+import Button from "../../../../components/ui/Button/Button";
 import GameweekSelector from "../../componentes/GameweekSelector/GameweekSelector";
 import MatchCard from "../../componentes/MatchCard/MatchCard";
 import MatchPredictionHeader from "../../componentes/MatchPredictionHeader/MatchPredictionHeader";
@@ -89,13 +90,16 @@ const MatchPredictionPage = () => {
       </div>
 
       <div className={styles.actions}>
-        <button
+        <Button
           type="button"
+          variant="primary"
+          size="lg"
+          loading={savingPredictions}
           onClick={() => void savePredictions()}
-          disabled={savingPredictions}
+          className={styles.saveButton}
         >
-          {savingPredictions ? "Saving predictions..." : "Save predictions"}
-        </button>
+          Save Predictions
+        </Button>
       </div>
     </div>
   );
