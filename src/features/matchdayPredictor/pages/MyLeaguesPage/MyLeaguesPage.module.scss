@@ -22,9 +22,9 @@
 
   @include respond-to("mobile") {
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 0.75rem;
+    align-items: stretch;
+    text-align: left;
+    gap: 1rem;
   }
 }
 
@@ -52,13 +52,17 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0;
+
+  @include respond-to("mobile") {
+    font-size: 1.6rem;
+  }
 }
 
 // --- Gameweek Select Padajući Meni ---
 .gameweekSelect {
   padding: 10px 36px 10px 16px;
   background-color: rgba($bg-secondary, 0.9);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%200d2ff' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2300d2ff' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 14px center;
   border: 1px solid $border-neon;
@@ -74,9 +78,8 @@
 
   @include respond-to("mobile") {
     width: 100%;
-    max-width: 280px;
-    font-size: 0.8rem;
-    padding: 8px 32px 8px 12px;
+    font-size: 0.85rem;
+    padding: 10px 32px 10px 14px;
   }
 
   &:focus {
@@ -114,7 +117,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
 
   @include respond-to("tablet") {
@@ -177,6 +180,11 @@
     letter-spacing: 0.5px;
     cursor: pointer;
     transition: all $transition-fast;
+
+    @include respond-to("mobile") {
+      padding: 10px 14px;
+      font-size: 0.8rem;
+    }
 
     &:hover:not(:disabled) {
       background: rgba(#ef4444, 0.22);
@@ -247,9 +255,10 @@
   border-radius: $radius-sm;
   border: 1px solid $border-color;
   background: rgba($bg-primary, 0.4);
+  overflow-y: auto;
 
   &::-webkit-scrollbar {
-    height: 5px;
+    height: 4px;
   }
 
   &::-webkit-scrollbar-track {
@@ -268,17 +277,18 @@
 
 .table {
   width: 100%;
-  min-width: 480px;
+  min-width: 440px;
   border-collapse: collapse;
   text-align: left;
   font-size: 0.85rem;
 
   @include respond-to("mobile") {
     font-size: 0.8rem;
+    min-width: 360px;
   }
 
   th {
-    padding: 10px 10px;
+    padding: 10px;
     background: rgba($bg-secondary, 0.85);
     color: $text-muted;
     font-size: 0.7rem;
@@ -290,7 +300,7 @@
   }
 
   td {
-    padding: 10px 10px;
+    padding: 10px;
     color: $text-secondary;
     border-bottom: 1px solid $border-color;
     white-space: nowrap;
@@ -306,12 +316,29 @@
   tbody tr {
     transition: background $transition-fast;
 
-    &:hover {
-      background: rgba($text-primary, 0.03);
+    &.clickableRow {
+      cursor: pointer;
+
+      &:hover {
+        background: rgba($accent-neon-blue, 0.08);
+      }
     }
 
     &:last-child td {
       border-bottom: none;
+    }
+  }
+
+  @include respond-to("mobile") {
+    th,
+    td {
+      padding: 8px 6px;
+    }
+
+    // Sakrivamo manju bitnu kolonu "Joined" na mobitelu ako je ekran preusidren
+    th:last-child,
+    td:last-child {
+      display: none;
     }
   }
 }
@@ -334,6 +361,7 @@
   border-radius: 4px;
   vertical-align: middle;
 }
+
 // ============================================================
 // LEAVE LEAGUE CONFIRMATION MODAL
 // ============================================================
@@ -455,6 +483,18 @@
 @include respond-to("mobile") {
   .leaveModal {
     max-width: 100%;
+  }
+
+  .leaveModalHeader {
+    padding-right: 0;
+
+    h2 {
+      font-size: 1.2rem;
+    }
+
+    p {
+      font-size: 0.85rem;
+    }
   }
 
   .leaveModalActions {

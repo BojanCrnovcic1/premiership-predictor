@@ -9,22 +9,37 @@
   max-width: $container-max-width;
   margin: 0 auto;
   padding: 24px 20px 40px;
+  box-sizing: border-box;
+
+  @include respond-to("tablet") {
+    gap: 20px;
+    padding: 20px 16px 32px;
+  }
 
   @include respond-to("mobile") {
+    gap: 16px;
     padding: 16px 12px 24px;
   }
 }
 
 .title {
-  font-size: 1.75rem;
+  font-size: clamp(1.35rem, 4vw, 1.75rem);
   font-weight: 700;
   color: $text-primary;
+
+  @include respond-to("mobile") {
+    text-align: center;
+  }
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
   gap: 20px;
+
+  @include respond-to("tablet") {
+    gap: 16px;
+  }
 
   @include respond-to("mobile") {
     grid-template-columns: 1fr;
@@ -41,27 +56,37 @@
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: $radius-md;
+  box-sizing: border-box;
   transition: border-color $transition-fast;
+
+  @include respond-to("mobile") {
+    padding: 16px;
+    gap: 14px;
+  }
 
   &:hover {
     border-color: rgba($accent-neon-blue, 0.4);
   }
 
   h3 {
-    font-size: 1.2rem;
+    font-size: clamp(1.05rem, 2.5vw, 1.2rem);
     font-weight: 700;
     color: $text-primary;
+    margin: 0;
+    overflow-wrap: anywhere;
   }
 }
 
 .owner {
   font-size: 0.88rem;
   color: $text-secondary;
+  overflow-wrap: anywhere;
 }
 
 .joinBtn {
   align-self: flex-start;
   padding: 8px 18px;
+  min-height: 40px;
   background: rgba($accent-neon-blue, 0.15);
   border: 1px solid rgba($accent-neon-blue, 0.4);
   border-radius: $radius-sm;
@@ -70,6 +95,12 @@
   font-size: 0.9rem;
   cursor: pointer;
   transition: all $transition-fast;
+
+  @include respond-to("mobile") {
+    width: 100%;
+    min-height: 44px;
+    align-self: stretch;
+  }
 
   &:hover:not(:disabled) {
     background: $accent-neon-blue;
@@ -89,4 +120,10 @@
   min-height: 250px;
   color: $text-secondary;
   font-size: 1rem;
+  text-align: center;
+  padding: 20px;
+
+  @include respond-to("mobile") {
+    min-height: 180px;
+  }
 }

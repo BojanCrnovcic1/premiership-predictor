@@ -5,6 +5,12 @@
   display: flex;
   flex-direction: column;
   gap: 18px;
+  width: 100%;
+  box-sizing: border-box;
+
+  @include respond-to("mobile") {
+    gap: 14px;
+  }
 }
 
 .header {
@@ -13,13 +19,20 @@
   justify-content: space-between;
   gap: 12px;
 
+  @include respond-to("mobile") {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
   h2 {
     margin: 0;
-    font-size: 1.25rem;
+    font-size: clamp(1.1rem, 2.5vw, 1.25rem);
     font-weight: 800;
     color: $text-primary;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    overflow-wrap: anywhere;
   }
 
   span {
@@ -39,6 +52,10 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+
+  @include respond-to("mobile") {
+    gap: 12px;
+  }
 }
 
 .league {
@@ -46,7 +63,6 @@
   flex-direction: column;
   gap: 14px;
   padding: 16px;
-
   border: 1px solid $border-color;
   border-radius: $radius-md;
   background: rgba(255, 255, 255, 0.03);
@@ -54,6 +70,11 @@
     background $transition-fast,
     border-color $transition-fast,
     transform $transition-fast;
+
+  @include respond-to("mobile") {
+    padding: 12px;
+    gap: 12px;
+  }
 
   &:hover {
     background: rgba(255, 255, 255, 0.05);
@@ -67,6 +88,11 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
+
+  @include respond-to("mobile") {
+    flex-direction: column;
+    gap: 8px;
+  }
 }
 
 .leagueMeta {
@@ -74,6 +100,7 @@
   flex-direction: column;
   gap: 4px;
   min-width: 0;
+  width: 100%;
 
   strong {
     font-size: 1rem;
@@ -96,19 +123,26 @@
   flex-shrink: 0;
   padding: 6px 10px;
   border-radius: 999px;
-
   background: rgba(0, 210, 255, 0.08);
   border: 1px solid rgba(0, 210, 255, 0.18);
   color: $accent-neon-blue;
   font-size: 0.8rem;
   font-weight: 700;
   white-space: nowrap;
+
+  @include respond-to("mobile") {
+    width: fit-content;
+  }
 }
 
 .infoRow {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+
+  @include respond-to("mobile") {
+    gap: 8px 12px;
+  }
 
   span {
     color: $text-secondary;
@@ -128,8 +162,12 @@
 
 .table {
   width: 100%;
-  min-width: 700px;
+  min-width: 500px;
   border-collapse: collapse;
+
+  @include respond-to("mobile") {
+    min-width: 380px;
+  }
 
   th,
   td {
@@ -138,6 +176,11 @@
     border-bottom: 1px solid $border-color;
     font-size: 0.92rem;
     vertical-align: middle;
+
+    @include respond-to("mobile") {
+      padding: 8px 6px;
+      font-size: 0.82rem;
+    }
   }
 
   th {
@@ -146,6 +189,10 @@
     text-transform: uppercase;
     letter-spacing: 0.04em;
     font-size: 0.78rem;
+
+    @include respond-to("mobile") {
+      font-size: 0.7rem;
+    }
   }
 
   td {
@@ -165,18 +212,4 @@
   text-align: center;
   color: $text-secondary;
   padding: 18px 10px;
-}
-
-@include respond-to("mobile") {
-  .league {
-    padding: 14px;
-  }
-
-  .leagueTop {
-    flex-direction: column;
-  }
-
-  .badge {
-    width: fit-content;
-  }
 }
